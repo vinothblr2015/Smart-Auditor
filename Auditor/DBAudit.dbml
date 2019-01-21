@@ -1,0 +1,2017 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DBAuditor" Class="DBAuditDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=192.168.1.10;Initial Catalog=DBAuditor;Integrated Security=False;User ID=auditor;MultipleActiveResultSets=True" SettingsObjectName="Auditor.Properties.Settings" SettingsPropertyName="AuditorConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Auditor_Log" Member="Auditor_Logs">
+    <Type Name="Auditor_Log">
+      <Column Name="LogID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LoginTime" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="LogoutTime" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Contractor" Member="Contractors">
+    <Type Name="Contractor">
+      <Column Name="ContractorID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Cure" Member="Cures">
+    <Type Name="Cure">
+      <Column Name="LocationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EmployeeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Person" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="DocNo" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PayDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Doctor" Member="Doctors">
+    <Type Name="Doctor">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DrType" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DoctorBills" Member="DoctorBills">
+    <Type Name="DoctorBill">
+      <Column Name="DocNo" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PayDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="LocationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DoctorID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="TaxPercent" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="Taxs" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Discounts" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="TotalDiscount" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="NetAmount" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Details" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Notes" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Employee" Member="Employees">
+    <Type Name="Employee">
+      <Column Name="EmployeeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EmployeeName" Type="System.String" DbType="NVarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="LocationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FunctionalDegree" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Position" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="EmpAddress" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Tel" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Location" Member="Locations">
+    <Type Name="Location">
+      <Column Name="LocationID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LocationName" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SectorID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Association Name="Sector_Location" Member="Sector" ThisKey="SectorID" OtherKey="ID" Type="Sector" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Log]" Member="Logs">
+    <Type Name="Log">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Operation" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Time" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PrePay" Member="PrePays">
+    <Type Name="PrePay">
+      <Column Name="LocationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="VendorID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EmployeeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DocNo" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PayDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Percentage" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Tax" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Fees" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="TotalDiscount" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="NetAmount" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Just" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="Discription" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Association Name="Vendor_PrePay" Member="Vendor" ThisKey="VendorID" OtherKey="ID" Type="Vendor" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Project" Member="Projects">
+    <Type Name="Project">
+      <Column Name="LocationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ContractorID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ExcuteOrder" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ExcuteOrderDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="predicationOrder" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="predicationOrderDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Period" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DocNo" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="ActualPeriod" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Value" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="PayDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="TaxRate" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="TaxValue" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="TransFeesRate" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="TransFeesValue" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="InsuranceRate" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="InsuranceValue" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="InsuranceRefund" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ReservedRate" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="ReservedValue" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="ReservedRefund" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="BusinessFees" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="TotalDiscount" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="NetAmount" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="JustAmount" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="ReservedDocNo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ReservedPayDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ReservedDiscountPercent" Type="System.Decimal" DbType="Decimal(3,1)" CanBeNull="true" />
+      <Column Name="ReservedDiscount" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="ReservedPaid" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="InsuranceDocNo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="InsurancePayDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="InsuranceDiscountPercent" Type="System.Decimal" DbType="Decimal(3,1)" CanBeNull="true" />
+      <Column Name="InsuranceDiscount" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="InsurancePaid" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Reserved" Member="Reserveds">
+    <Type Name="Reserved">
+      <Column Name="DocNo" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="predicationOrder" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PredicationOrderDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="ExcuteOrder" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ExcuteOrderDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="LocationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ContractorID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Value" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="ReservedValue" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PayDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Role_Details" Member="Role_Details">
+    <Type Name="Role_Detail">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Add_Location" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Modify_Location" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Delete_Location" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="View_Locations" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Add_Bank_Account" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Modify_Bank_Account" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Delete_Bank_Account" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="View_Bank_Accounts" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Add_Emoloyee" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Modify_Emoloyee" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Delete_Emoloyee" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="View_Employees" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Roles" Member="Roles">
+    <Type Name="Role">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Inactive" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Sectors" Member="Sectors">
+    <Type Name="Sector">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SectorName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Association Name="Sector_Location" Member="Locations" ThisKey="ID" OtherKey="SectorID" Type="Location" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Settlements" Member="Settlements">
+    <Type Name="Settlement">
+      <Column Name="SetNo" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="LocationId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SetDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Details" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SystemGeneralSettings" Member="SystemGeneralSettings">
+    <Type Name="SystemGeneralSetting">
+      <Column Name="PeriodStart" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="PeriodEnd" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Telephone" Member="Telephones">
+    <Type Name="Telephone">
+      <Column Name="DocNo" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PayDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="LocationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TelNoID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Portion" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="SellTax" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="Stamp" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="TotalDiscount" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="NetAmount" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="Percentage" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Tax" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="PaidAmount" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="Settled" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="SettlementDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Association Name="TelNo_Telephone" Member="TelNo" ThisKey="TelNoID" OtherKey="ID" Type="TelNo" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TelNo" Member="TelNos">
+    <Type Name="TelNo">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TelNo" Member="TelNo1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LocationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Association Name="TelNo_Telephone" Member="Telephones" ThisKey="ID" OtherKey="TelNoID" Type="Telephone" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TemporaryLoan" Member="TemporaryLoans">
+    <Type Name="TemporaryLoans">
+      <Column Name="DocNo" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PayDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="LocationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EmployeeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TotalAmount" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Period" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Reason" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="Statues" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="SettlemantDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ChequeNo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ChequeDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ExpenseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="SettlementAmount" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="SettlementPeriod" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Tax" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="Penalty" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="Fees" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="Revenues" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="NetAmount" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="TotalDiscount" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="AmountToPay" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="PaidAmount" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="BillNo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SettlementNo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TransFee" Member="TransFees">
+    <Type Name="TransFee">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DocNo" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PayDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="LocationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EmployeeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Destination" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Period" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Trans" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Travel" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserGroups" Member="UserGroups">
+    <Type Name="UserGroup">
+      <Column Name="GroupID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="AdminPermision" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AddPermision" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EditPermision" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ViewPermision" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Association Name="UserGroup_User" Member="Users" ThisKey="GroupID" OtherKey="GroupID" Type="User" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="UserAddress" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="Telephone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(60) NOT NULL" CanBeNull="false" />
+      <Column Name="GroupID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Disabled" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Locked" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Association Name="UserGroup_User" Member="UserGroup" ThisKey="GroupID" OtherKey="GroupID" Type="UserGroup" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Vendors" Member="Vendors">
+    <Type Name="Vendor">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Association Name="Vendor_PrePay" Member="PrePays" ThisKey="ID" OtherKey="VendorID" Type="PrePay" />
+    </Type>
+  </Table>
+  <Function Name="dbo.ProAddContractor" Method="ProAddContractor">
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(150)" />
+    <Parameter Name="Nots" Parameter="nots" Type="System.String" DbType="NVarChar(250)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProDeleteDoctorBill" Method="ProDeleteDoctorBill">
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(20)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProAddCure" Method="ProAddCure">
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="EmployeeID" Parameter="employeeID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Person" Parameter="person" Type="System.String" DbType="NVarChar(150)" />
+    <Parameter Name="Amount" Parameter="amount" Type="System.Decimal" DbType="Decimal(10,3)" />
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="PayDate" Parameter="payDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Desc" Parameter="desc" Type="System.String" DbType="NVarChar(1000)" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(1000)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProAddDoctor" Method="ProAddDoctor">
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(150)" />
+    <Parameter Name="Type" Parameter="type" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Nots" Parameter="nots" Type="System.String" DbType="NVarChar(300)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProAddDoctorBill" Method="ProAddDoctorBill">
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="PayDate" Parameter="payDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="DoctorID" Parameter="doctorID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Amount" Parameter="amount" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="TaxPercent" Parameter="taxPercent" Type="System.Decimal" DbType="Decimal(3,1)" />
+    <Parameter Name="Taxs" Parameter="taxs" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="Discounts" Parameter="discounts" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="TotalDiscount" Parameter="totalDiscount" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="NetAmount" Parameter="netAmount" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="Details" Parameter="details" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(500)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProAddEmployee" Method="ProAddEmployee">
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(150)" />
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FunctionalDegree" Parameter="functionalDegree" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Position" Parameter="position" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Address" Parameter="address" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="Tel" Parameter="tel" Type="System.String" DbType="NVarChar(11)" />
+    <Parameter Name="Nots" Parameter="nots" Type="System.String" DbType="NVarChar(250)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProAddLocation" Method="ProAddLocation">
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="SectorID" Parameter="sectorID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nots" Parameter="nots" Type="System.String" DbType="NVarChar(250)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProAddPrePay" Method="ProAddPrePay">
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="VendorID" Parameter="vendorID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="EmployeeID" Parameter="employeeID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="PayDate" Parameter="payDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Amount" Parameter="amount" Type="System.Double" DbType="Float" />
+    <Parameter Name="Percentage" Parameter="percentage" Type="System.Double" DbType="Float" />
+    <Parameter Name="Tax" Parameter="tax" Type="System.Double" DbType="Float" />
+    <Parameter Name="Fees" Parameter="fees" Type="System.Double" DbType="Float" />
+    <Parameter Name="TotalDiscount" Parameter="totalDiscount" Type="System.Double" DbType="Float" />
+    <Parameter Name="NetAmount" Parameter="netAmount" Type="System.Double" DbType="Float" />
+    <Parameter Name="Just" Parameter="just" Type="System.String" DbType="NVarChar(300)" />
+    <Parameter Name="Discription" Parameter="discription" Type="System.String" DbType="NVarChar(300)" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(300)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProAddProject" Method="ProAddProject">
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ContractorID" Parameter="contractorID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ExcuteOrder" Parameter="excuteOrder" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="ExcuteOrderDate" Parameter="excuteOrderDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="PredictionOrder" Parameter="predictionOrder" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="PridictionOrderDate" Parameter="pridictionOrderDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Period" Parameter="period" Type="System.Int32" DbType="Int" />
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="StartDate" Parameter="startDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="EndDate" Parameter="endDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="ActualPeriod" Parameter="actualPeriod" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="value" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="PayDate" Parameter="payDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="TaxRate" Parameter="taxRate" Type="System.Decimal" DbType="Decimal(3,1)" />
+    <Parameter Name="TaxValue" Parameter="taxValue" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="TransFeesRate" Parameter="transFeesRate" Type="System.Decimal" DbType="Decimal(3,1)" />
+    <Parameter Name="TransFeesValue" Parameter="transFeesValue" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="InsuranceRate" Parameter="insuranceRate" Type="System.Decimal" DbType="Decimal(3,1)" />
+    <Parameter Name="InsuranceValue" Parameter="insuranceValue" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="ReservedRate" Parameter="reservedRate" Type="System.Decimal" DbType="Decimal(3,1)" />
+    <Parameter Name="ReservedValue" Parameter="reservedValue" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="BusinessFees" Parameter="businessFees" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="TotalDiscount" Parameter="totalDiscount" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="NetAmount" Parameter="netAmount" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="JustAmount" Parameter="justAmount" Type="System.String" DbType="NVarChar(300)" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(1000)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProAddReserved" Method="ProAddReserved">
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="PredictionOrder" Parameter="predictionOrder" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="PredicationOrderDate" Parameter="predicationOrderDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="ExcuteOrder" Parameter="excuteOrder" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="ExcuteoRderDate" Parameter="excuteoRderDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ContractorID" Parameter="contractorID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="value" Type="System.Double" DbType="Float" />
+    <Parameter Name="ReservedValue" Parameter="reservedValue" Type="System.Double" DbType="Float" />
+    <Parameter Name="PayDate" Parameter="payDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Nots" Parameter="nots" Type="System.String" DbType="NVarChar(300)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProAddSettlement" Method="ProAddSettlement">
+    <Parameter Name="SetNo" Parameter="setNo" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="LocationId" Parameter="locationId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SetDate" Parameter="setDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Amount" Parameter="amount" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="Details" Parameter="details" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Nots" Parameter="nots" Type="System.String" DbType="NVarChar(500)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProAddTelephone" Method="ProAddTelephone">
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="PayDate" Parameter="payDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TelNoID" Parameter="telNoID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Portion" Parameter="portion" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Amount" Parameter="amount" Type="System.Decimal" DbType="Decimal(10,3)" />
+    <Parameter Name="SellTax" Parameter="sellTax" Type="System.Decimal" DbType="Decimal(10,3)" />
+    <Parameter Name="Stamp" Parameter="stamp" Type="System.Decimal" DbType="Decimal(10,3)" />
+    <Parameter Name="TotalDiscount" Parameter="totalDiscount" Type="System.Decimal" DbType="Decimal(10,3)" />
+    <Parameter Name="NetAmount" Parameter="netAmount" Type="System.Decimal" DbType="Decimal(10,3)" />
+    <Parameter Name="Percentage" Parameter="percentage" Type="System.Double" DbType="Float" />
+    <Parameter Name="Tax" Parameter="tax" Type="System.Decimal" DbType="Decimal(10,3)" />
+    <Parameter Name="PaidAmount" Parameter="paidAmount" Type="System.Decimal" DbType="Decimal(10,3)" />
+    <Parameter Name="Settled" Parameter="settled" Type="System.String" DbType="NVarChar(5)" />
+    <Parameter Name="SettlementDate" Parameter="settlementDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(1000)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProAddTelNo" Method="ProAddTelNo">
+    <Parameter Name="TelNo" Parameter="telNo" Type="System.String" DbType="NVarChar(12)" />
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(250)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProAddTempLoan" Method="ProAddTempLoan">
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="PayDate" Parameter="payDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="EmployeeID" Parameter="employeeID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TotalAmount" Parameter="totalAmount" Type="System.Decimal" DbType="Decimal(10,3)" />
+    <Parameter Name="Period" Parameter="period" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Reason" Parameter="reason" Type="System.String" DbType="NVarChar(300)" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(1000)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProAddTransFee" Method="ProAddTransFee">
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="PayDate" Parameter="payDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="EmployeeID" Parameter="employeeID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Destination" Parameter="destination" Type="System.String" DbType="NVarChar(150)" />
+    <Parameter Name="Period" Parameter="period" Type="System.String" DbType="NVarChar(150)" />
+    <Parameter Name="Trans" Parameter="trans" Type="System.Decimal" DbType="Decimal(10,3)" />
+    <Parameter Name="Travel" Parameter="travel" Type="System.Decimal" DbType="Decimal(10,3)" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(1000)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProAddUser" Method="ProAddUser">
+    <Parameter Name="FirstName" Parameter="firstName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="LastName" Parameter="lastName" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="UserAddress" Parameter="userAddress" Type="System.String" DbType="NVarChar(300)" />
+    <Parameter Name="Telephone" Parameter="telephone" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="NVarChar(60)" />
+    <Parameter Name="GroupID" Parameter="groupID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Disabled" Parameter="disabled" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Locked" Parameter="locked" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(1000)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProAddUserGroup" Method="ProAddUserGroup">
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="Admin" Parameter="admin" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Add" Parameter="add" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Edit" Parameter="edit" Type="System.Int32" DbType="Int" />
+    <Parameter Name="View" Parameter="view" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(300)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProAddVendor" Method="ProAddVendor">
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(300)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProAuditLogin" Method="ProAuditLogin">
+    <Parameter Name="UserID" Parameter="userID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="LoginTime" Parameter="loginTime" Type="System.String" DbType="NVarChar(20)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProAuditLogout" Method="ProAuditLogout">
+    <Parameter Name="UserID" Parameter="userID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="LoginTime" Parameter="loginTime" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="LogoutTime" Parameter="logoutTime" Type="System.String" DbType="NVarChar(20)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProAuditorGeneralSettings" Method="ProAuditorGeneralSettings">
+    <Parameter Name="PeriodStart" Parameter="periodStart" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="PeriodEnd" Parameter="periodEnd" Type="System.DateTime" DbType="Date" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProAutoLockAccount" Method="ProAutoLockAccount">
+    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProCountEmployee" Method="ProCountEmployee">
+    <Parameter Name="EmployeeID" Parameter="employeeID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Count" Parameter="count" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProCountLocation" Method="ProCountLocation">
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Count" Parameter="count" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProCountPayDate" Method="ProCountPayDate">
+    <Parameter Name="PayDate" Parameter="payDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Count" Parameter="count" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProCountTotal" Method="ProCountTotal">
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="TotalTrans" Parameter="totalTrans" Type="System.Double" DbType="Float" Direction="InOut" />
+    <Parameter Name="TotalTravel" Parameter="totalTravel" Type="System.Double" DbType="Float" Direction="InOut" />
+    <Parameter Name="Count" Parameter="count" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProDeleteAllTransFee" Method="ProDeleteAllTransFee">
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(20)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProDeleteContractor" Method="ProDeleteContractor">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProDeleteCure" Method="ProDeleteCure">
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(20)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProDeleteDoctor" Method="ProDeleteDoctor">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProGetLocations" Method="ProGetLocations">
+    <ElementType Name="ProGetLocationsResult">
+      <Column Name="LocationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LocationName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="SectorID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ProDeleteEmployee" Method="ProDeleteEmployee">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProDeleteLocation" Method="ProDeleteLocation">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProDeletePrePay" Method="ProDeletePrePay">
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(20)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProDeleteProject" Method="ProDeleteProject">
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(20)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProDeleteReserved" Method="ProDeleteReserved">
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(20)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProDeleteSettlement" Method="ProDeleteSettlement">
+    <Parameter Name="SetNo" Parameter="setNo" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProDeleteTelephone" Method="ProDeleteTelephone">
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(20)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProDeleteTelNo" Method="ProDeleteTelNo">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProDeleteTempLoan" Method="ProDeleteTempLoan">
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(20)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProDeleteTransFee" Method="ProDeleteTransFee">
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="EmployeeID" Parameter="employeeID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProDeleteUser" Method="ProDeleteUser">
+    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProDeleteUserGroup" Method="ProDeleteUserGroup">
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(100)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProDeleteVendor" Method="ProDeleteVendor">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProGetAuditorLog" Method="ProGetAuditorLog">
+    <ElementType Name="ProGetAuditorLogResult">
+      <Column Name="مسلسل" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[اسم المستخدم]" Member="اسم_المستخدم" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تسجيل الدخول]" Member="تسجيل_الدخول" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="[تسجيل الخروج]" Member="تسجيل_الخروج" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ProGetAuditorSettings" Method="ProGetAuditorSettings">
+    <Parameter Name="StartDate" Parameter="startDate" Type="System.DateTime" DbType="Date" Direction="InOut" />
+    <Parameter Name="EndDate" Parameter="endDate" Type="System.DateTime" DbType="Date" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProGetContractorByID" Method="ProGetContractorByID">
+    <Parameter Name="ContractorID" Parameter="contractorID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProGetCureByDocNo" Method="ProGetCureByDocNo">
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(20)" />
+    <ElementType Name="ProGetCureByDocNoResult">
+      <Column Name="[رقم المستند]" Member="رقم_المستند" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الدفع]" Member="تاريخ_الدفع" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[جهة العمل]" Member="جهة_العمل" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[اسم الموظف]" Member="اسم_الموظف" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="المبلغ" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[الصرف باسم]" Member="الصرف_باسم" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="البيان" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="ملاحظات" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ProGetCureByEmployeeID" Method="ProGetCureByEmployeeID">
+    <Parameter Name="EmployeeID" Parameter="employeeID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="ProGetCureByEmployeeIDResult">
+      <Column Name="[رقم المستند]" Member="رقم_المستند" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الدفع]" Member="تاريخ_الدفع" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[جهة العمل]" Member="جهة_العمل" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[اسم الموظف]" Member="اسم_الموظف" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="المبلغ" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[الصرف باسم]" Member="الصرف_باسم" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="البيان" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="ملاحظات" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ProGetCureByLocationID" Method="ProGetCureByLocationID">
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="ProGetCureByLocationIDResult">
+      <Column Name="[رقم المستند]" Member="رقم_المستند" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الدفع]" Member="تاريخ_الدفع" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[جهة العمل]" Member="جهة_العمل" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[اسم الموظف]" Member="اسم_الموظف" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="المبلغ" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[الصرف باسم]" Member="الصرف_باسم" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="البيان" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="ملاحظات" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ProGetCureByPayDate" Method="ProGetCureByPayDate">
+    <Parameter Name="PayDate" Parameter="payDate" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="ProGetCureByPayDateResult">
+      <Column Name="[رقم المستند]" Member="رقم_المستند" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الدفع]" Member="تاريخ_الدفع" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[جهة العمل]" Member="جهة_العمل" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[اسم الموظف]" Member="اسم_الموظف" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="المبلغ" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[الصرف باسم]" Member="الصرف_باسم" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="البيان" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="ملاحظات" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ProGetCurrentUser" Method="ProGetCurrentUser">
+    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="CurrentUserName" Parameter="currentUserName" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="FirstName" Parameter="firstName" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="LastName" Parameter="lastName" Type="System.String" DbType="NVarChar(100)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProGetDoctorBillByDocNo" Method="ProGetDoctorBillByDocNo">
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(20)" />
+    <ElementType Name="ProGetDoctorBillByDocNoResult">
+      <Column Name="[رقم المستند]" Member="رقم_المستند" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الدفع]" Member="تاريخ_الدفع" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[جهة العمل]" Member="جهة_العمل" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[اسم المركز]" Member="اسم_المركز" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="[قيمة المطالبة]" Member="قيمة_المطالبة" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[نسبة الضرائب]" Member="نسبة_الضرائب" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="[قيمة الضرائب]" Member="قيمة_الضرائب" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[استقطاعات أخرى]" Member="استقطاعات_أخرى" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[إجمالي الاستقطاعات]" Member="إجمالي_الاستقطاعات" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[صافي القيمة]" Member="صافي_القيمة" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="البيان" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="ملاحظات" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ProGetDoctorBillByDoctorID" Method="ProGetDoctorBillByDoctorID">
+    <Parameter Name="DoctorID" Parameter="doctorID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="ProGetDoctorBillByDoctorIDResult">
+      <Column Name="[رقم المستند]" Member="رقم_المستند" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الدفع]" Member="تاريخ_الدفع" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[جهة العمل]" Member="جهة_العمل" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[اسم المركز]" Member="اسم_المركز" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="[قيمة المطالبة]" Member="قيمة_المطالبة" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[نسبة الضرائب]" Member="نسبة_الضرائب" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="[قيمة الضرائب]" Member="قيمة_الضرائب" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[استقطاعات أخرى]" Member="استقطاعات_أخرى" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[إجمالي الاستقطاعات]" Member="إجمالي_الاستقطاعات" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[صافي القيمة]" Member="صافي_القيمة" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="البيان" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="ملاحظات" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ProGetDoctorBillByLocationID" Method="ProGetDoctorBillByLocationID">
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="ProGetDoctorBillByLocationIDResult">
+      <Column Name="[رقم المستند]" Member="رقم_المستند" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الدفع]" Member="تاريخ_الدفع" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[جهة العمل]" Member="جهة_العمل" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[اسم المركز]" Member="اسم_المركز" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="[قيمة المطالبة]" Member="قيمة_المطالبة" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[نسبة الضرائب]" Member="نسبة_الضرائب" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="[قيمة الضرائب]" Member="قيمة_الضرائب" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[استقطاعات أخرى]" Member="استقطاعات_أخرى" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[إجمالي الاستقطاعات]" Member="إجمالي_الاستقطاعات" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[صافي القيمة]" Member="صافي_القيمة" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="البيان" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="ملاحظات" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ProGetDoctorBillByPayDate" Method="ProGetDoctorBillByPayDate">
+    <Parameter Name="PayDate" Parameter="payDate" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="ProGetDoctorBillByPayDateResult">
+      <Column Name="[رقم المستند]" Member="رقم_المستند" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الدفع]" Member="تاريخ_الدفع" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[جهة العمل]" Member="جهة_العمل" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[اسم المركز]" Member="اسم_المركز" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="[قيمة المطالبة]" Member="قيمة_المطالبة" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[نسبة الضرائب]" Member="نسبة_الضرائب" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="[قيمة الضرائب]" Member="قيمة_الضرائب" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[استقطاعات أخرى]" Member="استقطاعات_أخرى" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[إجمالي الاستقطاعات]" Member="إجمالي_الاستقطاعات" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[صافي القيمة]" Member="صافي_القيمة" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="البيان" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="ملاحظات" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ProGetEmployeeByID" Method="ProGetEmployeeByID">
+    <Parameter Name="EmployeeID" Parameter="employeeID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProGetGroupByID" Method="ProGetGroupByID">
+    <Parameter Name="GroupID" Parameter="groupID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProGetLocationByID" Method="ProGetLocationByID">
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProLoginData" Method="ProLoginData">
+    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="UserID" Parameter="userID" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="NVarChar(60)" Direction="InOut" />
+    <Parameter Name="Disabled" Parameter="disabled" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="Locked" Parameter="locked" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="FName" Parameter="fName" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="LName" Parameter="lName" Type="System.String" DbType="NVarChar(100)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProGetProjectByContractorID" Method="ProGetProjectByContractorID">
+    <Parameter Name="ContractorID" Parameter="contractorID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="ProGetProjectByContractorIDResult">
+      <Column Name="[رقم المستند]" Member="رقم_المستند" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الدفع]" Member="تاريخ_الدفع" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[جهة العمل]" Member="جهة_العمل" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[اسم المقاول]" Member="اسم_المقاول" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="[رقم الأمر التنفيذي]" Member="رقم_الأمر_التنفيذي" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الأمر التنفيذي]" Member="تاريخ_الأمر_التنفيذي" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[رقم الإسناد]" Member="رقم_الإسناد" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الإسناد]" Member="تاريخ_الإسناد" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[مدة التنفيذ]" Member="مدة_التنفيذ" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ بدء الأعمال]" Member="تاريخ_بدء_الأعمال" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ النهو]" Member="تاريخ_النهو" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[مدة التنفيذ الفعلية]" Member="مدة_التنفيذ_الفعلية" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[بيان العملية]" Member="بيان_العملية" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="المبلغ" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[نسبة الضرائب]" Member="نسبة_الضرائب" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="[ضريبة أ.ت.ص]" Member="ضريبة_أ_ت_ص" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[نسبة مصاريف النقل]" Member="نسبة_مصاريف_النقل" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="[مصاريف النقل]" Member="مصاريف_النقل" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[نسبة التأمين النهائي]" Member="نسبة_التأمين_النهائي" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="[التأمين النهائي]" Member="التأمين_النهائي" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[حالة التأمين النهائي]" Member="حالة_التأمين_النهائي" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[نسية المبالغ المعلاة]" Member="نسية_المبالغ_المعلاة" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="[المبالغ المعلاة]" Member="المبالغ_المعلاة" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[حالة المبالغ المغلاة]" Member="حالة_المبالغ_المغلاة" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[مهن تطبيقية وهندسية]" Member="مهن_تطبيقية_وهندسية" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[إجمالي الخصم]" Member="إجمالي_الخصم" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[صافي القيمة]" Member="صافي_القيمة" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[فقط وقدره]" Member="فقط_وقدره" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="[رقم مستند رد المعلّى]" Member="رقم_مستند_رد_المعلّى" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[تاريخ رد المبالغ المعلاة]" Member="تاريخ_رد_المبالغ_المعلاة" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[نسبة خصم لجنة المعلّى]" Member="نسبة_خصم_لجنة_المعلّى" Type="System.Decimal" DbType="Decimal(3,1)" CanBeNull="true" />
+      <Column Name="[قيمة خصم المعلّى]" Member="قيمة_خصم_المعلّى" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[المبلغ المنصرف]" Member="المبلغ_المنصرف" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[رقم مستند رد التأمين]" Member="رقم_مستند_رد_التأمين" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[تاريخ رد التأمين]" Member="تاريخ_رد_التأمين" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[نسبة خصم التأمين]" Member="نسبة_خصم_التأمين" Type="System.Decimal" DbType="Decimal(3,1)" CanBeNull="true" />
+      <Column Name="[قيمة خصم التأمين]" Member="قيمة_خصم_التأمين" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[المبلغ المنصرف1]" Member="المبلغ_المنصرف1" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="ملاحظات" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ProGetProjectByDocNo" Method="ProGetProjectByDocNo">
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="ProGetProjectByDocNoResult">
+      <Column Name="[رقم المستند]" Member="رقم_المستند" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الدفع]" Member="تاريخ_الدفع" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[جهة العمل]" Member="جهة_العمل" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[اسم المقاول]" Member="اسم_المقاول" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="[رقم الأمر التنفيذي]" Member="رقم_الأمر_التنفيذي" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الأمر التنفيذي]" Member="تاريخ_الأمر_التنفيذي" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[رقم الإسناد]" Member="رقم_الإسناد" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الإسناد]" Member="تاريخ_الإسناد" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[مدة التنفيذ]" Member="مدة_التنفيذ" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ بدء الأعمال]" Member="تاريخ_بدء_الأعمال" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ النهو]" Member="تاريخ_النهو" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[مدة التنفيذ الفعلية]" Member="مدة_التنفيذ_الفعلية" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[بيان العملية]" Member="بيان_العملية" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="المبلغ" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[نسبة الضرائب]" Member="نسبة_الضرائب" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="[ضريبة أ.ت.ص]" Member="ضريبة_أ_ت_ص" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[نسبة مصاريف النقل]" Member="نسبة_مصاريف_النقل" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="[مصاريف النقل]" Member="مصاريف_النقل" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[نسبة التأمين النهائي]" Member="نسبة_التأمين_النهائي" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="[التأمين النهائي]" Member="التأمين_النهائي" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[حالة التأمين النهائي]" Member="حالة_التأمين_النهائي" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[نسية المبالغ المعلاة]" Member="نسية_المبالغ_المعلاة" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="[المبالغ المعلاة]" Member="المبالغ_المعلاة" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[حالة المبالغ المغلاة]" Member="حالة_المبالغ_المغلاة" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[مهن تطبيقية وهندسية]" Member="مهن_تطبيقية_وهندسية" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[إجمالي الخصم]" Member="إجمالي_الخصم" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[صافي القيمة]" Member="صافي_القيمة" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[فقط وقدره]" Member="فقط_وقدره" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="[رقم مستند رد المعلّى]" Member="رقم_مستند_رد_المعلّى" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[تاريخ رد المبالغ المعلاة]" Member="تاريخ_رد_المبالغ_المعلاة" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[نسبة خصم لجنة المعلّى]" Member="نسبة_خصم_لجنة_المعلّى" Type="System.Decimal" DbType="Decimal(3,1)" CanBeNull="true" />
+      <Column Name="[قيمة خصم المعلّى]" Member="قيمة_خصم_المعلّى" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[المبلغ المنصرف]" Member="المبلغ_المنصرف" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[رقم مستند رد التأمين]" Member="رقم_مستند_رد_التأمين" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[تاريخ رد التأمين]" Member="تاريخ_رد_التأمين" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[نسبة خصم التأمين]" Member="نسبة_خصم_التأمين" Type="System.Decimal" DbType="Decimal(3,1)" CanBeNull="true" />
+      <Column Name="[قيمة خصم التأمين]" Member="قيمة_خصم_التأمين" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[المبلغ المنصرف1]" Member="المبلغ_المنصرف1" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="ملاحظات" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ProGetProjectByInsuranceRefund" Method="ProGetProjectByInsuranceRefund">
+    <Parameter Name="InsuranceRefund" Parameter="insuranceRefund" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="ProGetProjectByInsuranceRefundResult">
+      <Column Name="[رقم المستند]" Member="رقم_المستند" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الدفع]" Member="تاريخ_الدفع" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[جهة العمل]" Member="جهة_العمل" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[اسم المقاول]" Member="اسم_المقاول" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="[رقم الأمر التنفيذي]" Member="رقم_الأمر_التنفيذي" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الأمر التنفيذي]" Member="تاريخ_الأمر_التنفيذي" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[رقم الإسناد]" Member="رقم_الإسناد" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الإسناد]" Member="تاريخ_الإسناد" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[مدة التنفيذ]" Member="مدة_التنفيذ" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ بدء الأعمال]" Member="تاريخ_بدء_الأعمال" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ النهو]" Member="تاريخ_النهو" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[مدة التنفيذ الفعلية]" Member="مدة_التنفيذ_الفعلية" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[بيان العملية]" Member="بيان_العملية" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="المبلغ" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[نسبة الضرائب]" Member="نسبة_الضرائب" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="[ضريبة أ.ت.ص]" Member="ضريبة_أ_ت_ص" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[نسبة مصاريف النقل]" Member="نسبة_مصاريف_النقل" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="[مصاريف النقل]" Member="مصاريف_النقل" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[نسبة التأمين النهائي]" Member="نسبة_التأمين_النهائي" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="[التأمين النهائي]" Member="التأمين_النهائي" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[حالة التأمين النهائي]" Member="حالة_التأمين_النهائي" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[نسية المبالغ المعلاة]" Member="نسية_المبالغ_المعلاة" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="[المبالغ المعلاة]" Member="المبالغ_المعلاة" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[حالة المبالغ المغلاة]" Member="حالة_المبالغ_المغلاة" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[مهن تطبيقية وهندسية]" Member="مهن_تطبيقية_وهندسية" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[إجمالي الخصم]" Member="إجمالي_الخصم" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[صافي القيمة]" Member="صافي_القيمة" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[فقط وقدره]" Member="فقط_وقدره" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="[رقم مستند رد المعلّى]" Member="رقم_مستند_رد_المعلّى" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[تاريخ رد المبالغ المعلاة]" Member="تاريخ_رد_المبالغ_المعلاة" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[نسبة خصم لجنة المعلّى]" Member="نسبة_خصم_لجنة_المعلّى" Type="System.Decimal" DbType="Decimal(3,1)" CanBeNull="true" />
+      <Column Name="[قيمة خصم المعلّى]" Member="قيمة_خصم_المعلّى" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[المبلغ المنصرف]" Member="المبلغ_المنصرف" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[رقم مستند رد التأمين]" Member="رقم_مستند_رد_التأمين" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[تاريخ رد التأمين]" Member="تاريخ_رد_التأمين" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[نسبة خصم التأمين]" Member="نسبة_خصم_التأمين" Type="System.Decimal" DbType="Decimal(3,1)" CanBeNull="true" />
+      <Column Name="[قيمة خصم التأمين]" Member="قيمة_خصم_التأمين" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[المبلغ المنصرف1]" Member="المبلغ_المنصرف1" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="ملاحظات" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ProGetProjectByLocationID" Method="ProGetProjectByLocationID">
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="ProGetProjectByLocationIDResult">
+      <Column Name="[رقم المستند]" Member="رقم_المستند" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الدفع]" Member="تاريخ_الدفع" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[جهة العمل]" Member="جهة_العمل" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[اسم المقاول]" Member="اسم_المقاول" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="[رقم الأمر التنفيذي]" Member="رقم_الأمر_التنفيذي" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الأمر التنفيذي]" Member="تاريخ_الأمر_التنفيذي" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[رقم الإسناد]" Member="رقم_الإسناد" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الإسناد]" Member="تاريخ_الإسناد" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[مدة التنفيذ]" Member="مدة_التنفيذ" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ بدء الأعمال]" Member="تاريخ_بدء_الأعمال" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ النهو]" Member="تاريخ_النهو" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[مدة التنفيذ الفعلية]" Member="مدة_التنفيذ_الفعلية" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[بيان العملية]" Member="بيان_العملية" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="المبلغ" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[نسبة الضرائب]" Member="نسبة_الضرائب" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="[ضريبة أ.ت.ص]" Member="ضريبة_أ_ت_ص" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[نسبة مصاريف النقل]" Member="نسبة_مصاريف_النقل" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="[مصاريف النقل]" Member="مصاريف_النقل" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[نسبة التأمين النهائي]" Member="نسبة_التأمين_النهائي" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="[التأمين النهائي]" Member="التأمين_النهائي" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[حالة التأمين النهائي]" Member="حالة_التأمين_النهائي" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[نسية المبالغ المعلاة]" Member="نسية_المبالغ_المعلاة" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="[المبالغ المعلاة]" Member="المبالغ_المعلاة" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[حالة المبالغ المغلاة]" Member="حالة_المبالغ_المغلاة" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[مهن تطبيقية وهندسية]" Member="مهن_تطبيقية_وهندسية" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[إجمالي الخصم]" Member="إجمالي_الخصم" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[صافي القيمة]" Member="صافي_القيمة" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[فقط وقدره]" Member="فقط_وقدره" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="[رقم مستند رد المعلّى]" Member="رقم_مستند_رد_المعلّى" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[تاريخ رد المبالغ المعلاة]" Member="تاريخ_رد_المبالغ_المعلاة" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[نسبة خصم لجنة المعلّى]" Member="نسبة_خصم_لجنة_المعلّى" Type="System.Decimal" DbType="Decimal(3,1)" CanBeNull="true" />
+      <Column Name="[قيمة خصم المعلّى]" Member="قيمة_خصم_المعلّى" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[المبلغ المنصرف]" Member="المبلغ_المنصرف" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[رقم مستند رد التأمين]" Member="رقم_مستند_رد_التأمين" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[تاريخ رد التأمين]" Member="تاريخ_رد_التأمين" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[نسبة خصم التأمين]" Member="نسبة_خصم_التأمين" Type="System.Decimal" DbType="Decimal(3,1)" CanBeNull="true" />
+      <Column Name="[قيمة خصم التأمين]" Member="قيمة_خصم_التأمين" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[المبلغ المنصرف1]" Member="المبلغ_المنصرف1" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="ملاحظات" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ProGetProjectByPayDate" Method="ProGetProjectByPayDate">
+    <Parameter Name="PayDate" Parameter="payDate" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="ProGetProjectByPayDateResult">
+      <Column Name="[رقم المستند]" Member="رقم_المستند" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الدفع]" Member="تاريخ_الدفع" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[جهة العمل]" Member="جهة_العمل" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[اسم المقاول]" Member="اسم_المقاول" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="[رقم الأمر التنفيذي]" Member="رقم_الأمر_التنفيذي" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الأمر التنفيذي]" Member="تاريخ_الأمر_التنفيذي" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[رقم الإسناد]" Member="رقم_الإسناد" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الإسناد]" Member="تاريخ_الإسناد" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[مدة التنفيذ]" Member="مدة_التنفيذ" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ بدء الأعمال]" Member="تاريخ_بدء_الأعمال" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ النهو]" Member="تاريخ_النهو" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[مدة التنفيذ الفعلية]" Member="مدة_التنفيذ_الفعلية" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[بيان العملية]" Member="بيان_العملية" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="المبلغ" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[نسبة الضرائب]" Member="نسبة_الضرائب" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="[ضريبة أ.ت.ص]" Member="ضريبة_أ_ت_ص" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[نسبة مصاريف النقل]" Member="نسبة_مصاريف_النقل" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="[مصاريف النقل]" Member="مصاريف_النقل" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[نسبة التأمين النهائي]" Member="نسبة_التأمين_النهائي" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="[التأمين النهائي]" Member="التأمين_النهائي" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[حالة التأمين النهائي]" Member="حالة_التأمين_النهائي" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[نسية المبالغ المعلاة]" Member="نسية_المبالغ_المعلاة" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="[المبالغ المعلاة]" Member="المبالغ_المعلاة" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[حالة المبالغ المغلاة]" Member="حالة_المبالغ_المغلاة" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[مهن تطبيقية وهندسية]" Member="مهن_تطبيقية_وهندسية" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[إجمالي الخصم]" Member="إجمالي_الخصم" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[صافي القيمة]" Member="صافي_القيمة" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[فقط وقدره]" Member="فقط_وقدره" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="[رقم مستند رد المعلّى]" Member="رقم_مستند_رد_المعلّى" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[تاريخ رد المبالغ المعلاة]" Member="تاريخ_رد_المبالغ_المعلاة" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[نسبة خصم لجنة المعلّى]" Member="نسبة_خصم_لجنة_المعلّى" Type="System.Decimal" DbType="Decimal(3,1)" CanBeNull="true" />
+      <Column Name="[قيمة خصم المعلّى]" Member="قيمة_خصم_المعلّى" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[المبلغ المنصرف]" Member="المبلغ_المنصرف" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[رقم مستند رد التأمين]" Member="رقم_مستند_رد_التأمين" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[تاريخ رد التأمين]" Member="تاريخ_رد_التأمين" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[نسبة خصم التأمين]" Member="نسبة_خصم_التأمين" Type="System.Decimal" DbType="Decimal(3,1)" CanBeNull="true" />
+      <Column Name="[قيمة خصم التأمين]" Member="قيمة_خصم_التأمين" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[المبلغ المنصرف1]" Member="المبلغ_المنصرف1" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="ملاحظات" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ProGetProjectByReservedRefund" Method="ProGetProjectByReservedRefund">
+    <Parameter Name="ReservedRefund" Parameter="reservedRefund" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="ProGetProjectByReservedRefundResult">
+      <Column Name="[رقم المستند]" Member="رقم_المستند" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الدفع]" Member="تاريخ_الدفع" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[جهة العمل]" Member="جهة_العمل" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[اسم المقاول]" Member="اسم_المقاول" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="[رقم الأمر التنفيذي]" Member="رقم_الأمر_التنفيذي" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الأمر التنفيذي]" Member="تاريخ_الأمر_التنفيذي" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[رقم الإسناد]" Member="رقم_الإسناد" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الإسناد]" Member="تاريخ_الإسناد" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[مدة التنفيذ]" Member="مدة_التنفيذ" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ بدء الأعمال]" Member="تاريخ_بدء_الأعمال" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ النهو]" Member="تاريخ_النهو" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[مدة التنفيذ الفعلية]" Member="مدة_التنفيذ_الفعلية" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[بيان العملية]" Member="بيان_العملية" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="المبلغ" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[نسبة الضرائب]" Member="نسبة_الضرائب" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="[ضريبة أ.ت.ص]" Member="ضريبة_أ_ت_ص" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[نسبة مصاريف النقل]" Member="نسبة_مصاريف_النقل" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="[مصاريف النقل]" Member="مصاريف_النقل" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[نسبة التأمين النهائي]" Member="نسبة_التأمين_النهائي" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="[التأمين النهائي]" Member="التأمين_النهائي" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[حالة التأمين النهائي]" Member="حالة_التأمين_النهائي" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[نسية المبالغ المعلاة]" Member="نسية_المبالغ_المعلاة" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="[المبالغ المعلاة]" Member="المبالغ_المعلاة" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[حالة المبالغ المغلاة]" Member="حالة_المبالغ_المغلاة" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[مهن تطبيقية وهندسية]" Member="مهن_تطبيقية_وهندسية" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[إجمالي الخصم]" Member="إجمالي_الخصم" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[صافي القيمة]" Member="صافي_القيمة" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[فقط وقدره]" Member="فقط_وقدره" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="[رقم مستند رد المعلّى]" Member="رقم_مستند_رد_المعلّى" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[تاريخ رد المبالغ المعلاة]" Member="تاريخ_رد_المبالغ_المعلاة" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[نسبة خصم لجنة المعلّى]" Member="نسبة_خصم_لجنة_المعلّى" Type="System.Decimal" DbType="Decimal(3,1)" CanBeNull="true" />
+      <Column Name="[قيمة خصم المعلّى]" Member="قيمة_خصم_المعلّى" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[المبلغ المنصرف]" Member="المبلغ_المنصرف" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[رقم مستند رد التأمين]" Member="رقم_مستند_رد_التأمين" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[تاريخ رد التأمين]" Member="تاريخ_رد_التأمين" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[نسبة خصم التأمين]" Member="نسبة_خصم_التأمين" Type="System.Decimal" DbType="Decimal(3,1)" CanBeNull="true" />
+      <Column Name="[قيمة خصم التأمين]" Member="قيمة_خصم_التأمين" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[المبلغ المنصرف1]" Member="المبلغ_المنصرف1" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="ملاحظات" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.[ProGetProjects-All]" Method="ProGetProjects_All">
+    <ElementType Name="ProGetProjects_AllResult">
+      <Column Name="[رقم المستند]" Member="رقم_المستند" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الدفع]" Member="تاريخ_الدفع" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[جهة العمل]" Member="جهة_العمل" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[اسم المقاول]" Member="اسم_المقاول" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="[رقم الأمر التنفيذي]" Member="رقم_الأمر_التنفيذي" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الأمر التنفيذي]" Member="تاريخ_الأمر_التنفيذي" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[رقم الإسناد]" Member="رقم_الإسناد" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الإسناد]" Member="تاريخ_الإسناد" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[مدة التنفيذ]" Member="مدة_التنفيذ" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ بدء الأعمال]" Member="تاريخ_بدء_الأعمال" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ النهو]" Member="تاريخ_النهو" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[مدة التنفيذ الفعلية]" Member="مدة_التنفيذ_الفعلية" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[بيان العملية]" Member="بيان_العملية" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="المبلغ" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[نسبة الضرائب]" Member="نسبة_الضرائب" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="[ضريبة أ.ت.ص]" Member="ضريبة_أ_ت_ص" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[نسبة مصاريف النقل]" Member="نسبة_مصاريف_النقل" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="[مصاريف النقل]" Member="مصاريف_النقل" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[نسبة التأمين النهائي]" Member="نسبة_التأمين_النهائي" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="[التأمين النهائي]" Member="التأمين_النهائي" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[حالة التأمين النهائي]" Member="حالة_التأمين_النهائي" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[نسية المبالغ المعلاة]" Member="نسية_المبالغ_المعلاة" Type="System.Decimal" DbType="Decimal(3,1) NOT NULL" CanBeNull="false" />
+      <Column Name="[المبالغ المعلاة]" Member="المبالغ_المعلاة" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[حالة المبالغ المغلاة]" Member="حالة_المبالغ_المغلاة" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[مهن تطبيقية وهندسية]" Member="مهن_تطبيقية_وهندسية" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[إجمالي الخصم]" Member="إجمالي_الخصم" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[صافي القيمة]" Member="صافي_القيمة" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[فقط وقدره]" Member="فقط_وقدره" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="[رقم مستند رد المعلّى]" Member="رقم_مستند_رد_المعلّى" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[تاريخ رد المبالغ المعلاة]" Member="تاريخ_رد_المبالغ_المعلاة" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[نسبة خصم لجنة المعلّى]" Member="نسبة_خصم_لجنة_المعلّى" Type="System.Decimal" DbType="Decimal(3,1)" CanBeNull="true" />
+      <Column Name="[قيمة خصم المعلّى]" Member="قيمة_خصم_المعلّى" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[المبلغ المنصرف]" Member="المبلغ_المنصرف" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[رقم مستند رد التأمين]" Member="رقم_مستند_رد_التأمين" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[تاريخ رد التأمين]" Member="تاريخ_رد_التأمين" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[نسبة خصم التأمين]" Member="نسبة_خصم_التأمين" Type="System.Decimal" DbType="Decimal(3,1)" CanBeNull="true" />
+      <Column Name="[قيمة خصم التأمين]" Member="قيمة_خصم_التأمين" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[المبلغ المنصرف1]" Member="المبلغ_المنصرف1" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="ملاحظات" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ProGetSettlementBySetNo" Method="ProGetSettlementBySetNo">
+    <Parameter Name="SetNo" Parameter="setNo" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="ProGetSettlementBySetNoResult">
+      <Column Name="[رقم التسوية]" Member="رقم_التسوية" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[جهة العمل]" Member="جهة_العمل" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ التسوية]" Member="تاريخ_التسوية" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="المبلغ" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="البيان" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="ملاحظات" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.[ProGetTempLoan-All]" Method="ProGetTempLoan_All">
+    <Parameter Name="PeriodStart" Parameter="periodStart" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="PeriodEnd" Parameter="periodEnd" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="ProGetTempLoan_AllResult">
+      <Column Name="[رقم المستند]" Member="رقم_المستند" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الدفع]" Member="تاريخ_الدفع" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[جهة العمل]" Member="جهة_العمل" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[مسئول السلفة]" Member="مسئول_السلفة" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="[مبلغ السلفة]" Member="مبلغ_السلفة" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[التسوية خلال]" Member="التسوية_خلال" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[الغرض من الصرف]" Member="الغرض_من_الصرف" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="[حالة التسوية]" Member="حالة_التسوية" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ التسوية]" Member="تاريخ_التسوية" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[رقم الشيك]" Member="رقم_الشيك" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[تاريخ تحرير الشيك]" Member="تاريخ_تحرير_الشيك" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[تاريخ صرفه]" Member="تاريخ_صرفه" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[تاريخ الاستلام]" Member="تاريخ_الاستلام" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[مبلغ التسوية]" Member="مبلغ_التسوية" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[مدة التسوية]" Member="مدة_التسوية" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="الضرائب" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[غرامات التأخير]" Member="غرامات_التأخير" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[مهن تطليقية وهندسية]" Member="مهن_تطليقية_وهندسية" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="إيرادات" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[المبلغ الصافي]" Member="المبلغ_الصافي" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[إجمالي الاستقطاعات]" Member="إجمالي_الاستقطاعات" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[مطلوب توريده]" Member="مطلوب_توريده" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[مبالغ تم توريدها]" Member="مبالغ_تم_توريدها" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[إيصال التوريد]" Member="إيصال_التوريد" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[رقم التسوية]" Member="رقم_التسوية" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ملاحظات" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.[ProGetTempLoanByEmployeeID-All]" Method="ProGetTempLoanByEmployeeID_All">
+    <Parameter Name="EmployeeID" Parameter="employeeID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PeriodStart" Parameter="periodStart" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="PeriodEnd" Parameter="periodEnd" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="ProGetTempLoanByEmployeeID_AllResult">
+      <Column Name="[رقم المستند]" Member="رقم_المستند" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الدفع]" Member="تاريخ_الدفع" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[جهة العمل]" Member="جهة_العمل" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[مسئول السلفة]" Member="مسئول_السلفة" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="[مبلغ السلفة]" Member="مبلغ_السلفة" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[التسوية خلال]" Member="التسوية_خلال" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[الغرض من الصرف]" Member="الغرض_من_الصرف" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="[حالة التسوية]" Member="حالة_التسوية" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ التسوية]" Member="تاريخ_التسوية" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[رقم الشيك]" Member="رقم_الشيك" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[تاريخ تحرير الشيك]" Member="تاريخ_تحرير_الشيك" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[تاريخ صرفه]" Member="تاريخ_صرفه" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[تاريخ الاستلام]" Member="تاريخ_الاستلام" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[مبلغ التسوية]" Member="مبلغ_التسوية" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[مدة التسوية]" Member="مدة_التسوية" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="الضرائب" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[غرامات التأخير]" Member="غرامات_التأخير" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[مهن تطليقية وهندسية]" Member="مهن_تطليقية_وهندسية" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="إيرادات" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[المبلغ الصافي]" Member="المبلغ_الصافي" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[إجمالي الاستقطاعات]" Member="إجمالي_الاستقطاعات" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[مطلوب توريده]" Member="مطلوب_توريده" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[مبالغ تم توريدها]" Member="مبالغ_تم_توريدها" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[إيصال التوريد]" Member="إيصال_التوريد" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[رقم التسوية]" Member="رقم_التسوية" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ملاحظات" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.[ProGetTempLoanByEmployeeID-NoToPay]" Method="ProGetTempLoanByEmployeeID_NoToPay">
+    <Parameter Name="EmployeeID" Parameter="employeeID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PeriodStart" Parameter="periodStart" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="PeriodEnd" Parameter="periodEnd" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="ProGetTempLoanByEmployeeID_NoToPayResult">
+      <Column Name="[رقم المستند]" Member="رقم_المستند" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الدفع]" Member="تاريخ_الدفع" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[جهة العمل]" Member="جهة_العمل" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[مسئول السلفة]" Member="مسئول_السلفة" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="[مبلغ السلفة]" Member="مبلغ_السلفة" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[الغرض من الصرف]" Member="الغرض_من_الصرف" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.[ProGetTempLoanByEmployeeID-Statues]" Method="ProGetTempLoanByEmployeeID_Statues">
+    <Parameter Name="EmployeeID" Parameter="employeeID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Statues" Parameter="statues" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="PeriodStart" Parameter="periodStart" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="PeriodEnd" Parameter="periodEnd" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="ProGetTempLoanByEmployeeID_StatuesResult">
+      <Column Name="[رقم المستند]" Member="رقم_المستند" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الدفع]" Member="تاريخ_الدفع" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[جهة العمل]" Member="جهة_العمل" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[مبلغ السلفة]" Member="مبلغ_السلفة" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[التسوية خلال]" Member="التسوية_خلال" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[الغرض من الصرف]" Member="الغرض_من_الصرف" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.[ProGetTempLoanByEmployeeID-ToPay]" Method="ProGetTempLoanByEmployeeID_ToPay">
+    <Parameter Name="EmployeeID" Parameter="employeeID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PeriodStart" Parameter="periodStart" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="PeriodEnd" Parameter="periodEnd" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="ProGetTempLoanByEmployeeID_ToPayResult">
+      <Column Name="[رقم المستند]" Member="رقم_المستند" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الدفع]" Member="تاريخ_الدفع" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[جهة العمل]" Member="جهة_العمل" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[مسئول السلفة]" Member="مسئول_السلفة" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="[مبلغ السلفة]" Member="مبلغ_السلفة" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[الغرض من الصرف]" Member="الغرض_من_الصرف" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="[المطلوب توريده]" Member="المطلوب_توريده" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.[ProGetTempLoanByLoacationID-NoToPay]" Method="ProGetTempLoanByLoacationID_NoToPay">
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PeriodStart" Parameter="periodStart" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="PeriodEnd" Parameter="periodEnd" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="ProGetTempLoanByLoacationID_NoToPayResult">
+      <Column Name="[رقم المستند]" Member="رقم_المستند" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الدفع]" Member="تاريخ_الدفع" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[مسئول السلفة]" Member="مسئول_السلفة" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="[مبلغ السلفة]" Member="مبلغ_السلفة" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[الغرض من الصرف]" Member="الغرض_من_الصرف" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.[ProGetTempLoanByLoacationID-Statues]" Method="ProGetTempLoanByLoacationID_Statues">
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Statues" Parameter="statues" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="PeriodStart" Parameter="periodStart" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="PeriodEnd" Parameter="periodEnd" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="ProGetTempLoanByLoacationID_StatuesResult">
+      <Column Name="[رقم المستند]" Member="رقم_المستند" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الدفع]" Member="تاريخ_الدفع" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[مسئول السلفة]" Member="مسئول_السلفة" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="[مبلغ السلفة]" Member="مبلغ_السلفة" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[الغرض من الصرف]" Member="الغرض_من_الصرف" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.[ProGetTempLoanByLoacationID-ToPay]" Method="ProGetTempLoanByLoacationID_ToPay">
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PeriodStart" Parameter="periodStart" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="PeriodEnd" Parameter="periodEnd" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="ProGetTempLoanByLoacationID_ToPayResult">
+      <Column Name="[رقم المستند]" Member="رقم_المستند" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الدفع]" Member="تاريخ_الدفع" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[مسئول السلفة]" Member="مسئول_السلفة" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="[مبلغ السلفة]" Member="مبلغ_السلفة" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[الغرض من الصرف]" Member="الغرض_من_الصرف" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="[المطلوب توريده]" Member="المطلوب_توريده" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.[ProGetTempLoanByLocationID-All]" Method="ProGetTempLoanByLocationID_All">
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PeriodStart" Parameter="periodStart" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="PeriodEnd" Parameter="periodEnd" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="ProGetTempLoanByLocationID_AllResult">
+      <Column Name="[رقم المستند]" Member="رقم_المستند" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الدفع]" Member="تاريخ_الدفع" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[مسئول السلفة]" Member="مسئول_السلفة" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="[مبلغ السلفة]" Member="مبلغ_السلفة" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[الغرض من الصرف]" Member="الغرض_من_الصرف" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="[حالة التسوية]" Member="حالة_التسوية" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.[ProGetTempLoanByStatues-All]" Method="ProGetTempLoanByStatues_All">
+    <Parameter Name="Statues" Parameter="statues" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="PeriodStart" Parameter="periodStart" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="PeriodEnd" Parameter="periodEnd" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="ProGetTempLoanByStatues_AllResult">
+      <Column Name="[رقم المستند]" Member="رقم_المستند" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الدفع]" Member="تاريخ_الدفع" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[جهة العمل]" Member="جهة_العمل" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[مسئول السلفة]" Member="مسئول_السلفة" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="[مبلغ السلفة]" Member="مبلغ_السلفة" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[التسوية خلال]" Member="التسوية_خلال" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[الغرض من الصرف]" Member="الغرض_من_الصرف" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="[حالة التسوية]" Member="حالة_التسوية" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ التسوية]" Member="تاريخ_التسوية" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[رقم الشيك]" Member="رقم_الشيك" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[تاريخ تحرير الشيك]" Member="تاريخ_تحرير_الشيك" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[تاريخ صرفه]" Member="تاريخ_صرفه" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[تاريخ الاستلام]" Member="تاريخ_الاستلام" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[مبلغ التسوية]" Member="مبلغ_التسوية" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[مدة التسوية]" Member="مدة_التسوية" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="الضرائب" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[غرامات التأخير]" Member="غرامات_التأخير" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[مهن تطليقية وهندسية]" Member="مهن_تطليقية_وهندسية" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="إيرادات" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[المبلغ الصافي]" Member="المبلغ_الصافي" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[إجمالي الاستقطاعات]" Member="إجمالي_الاستقطاعات" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[مطلوب توريده]" Member="مطلوب_توريده" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[مبالغ تم توريدها]" Member="مبالغ_تم_توريدها" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[إيصال التوريد]" Member="إيصال_التوريد" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[رقم التسوية]" Member="رقم_التسوية" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ملاحظات" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.[ProGetTempLoanNoToPay-All]" Method="ProGetTempLoanNoToPay_All">
+    <Parameter Name="PeriodStart" Parameter="periodStart" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="PeriodEnd" Parameter="periodEnd" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="ProGetTempLoanNoToPay_AllResult">
+      <Column Name="[رقم المستند]" Member="رقم_المستند" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الدفع]" Member="تاريخ_الدفع" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[جهة العمل]" Member="جهة_العمل" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[مسئول السلفة]" Member="مسئول_السلفة" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="[مبلغ السلفة]" Member="مبلغ_السلفة" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[التسوية خلال]" Member="التسوية_خلال" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[الغرض من الصرف]" Member="الغرض_من_الصرف" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="[حالة التسوية]" Member="حالة_التسوية" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ التسوية]" Member="تاريخ_التسوية" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[رقم الشيك]" Member="رقم_الشيك" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[تاريخ تحرير الشيك]" Member="تاريخ_تحرير_الشيك" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[تاريخ صرفه]" Member="تاريخ_صرفه" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[تاريخ الاستلام]" Member="تاريخ_الاستلام" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[مبلغ التسوية]" Member="مبلغ_التسوية" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[مدة التسوية]" Member="مدة_التسوية" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="الضرائب" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[غرامات التأخير]" Member="غرامات_التأخير" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[مهن تطليقية وهندسية]" Member="مهن_تطليقية_وهندسية" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="إيرادات" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[المبلغ الصافي]" Member="المبلغ_الصافي" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[إجمالي الاستقطاعات]" Member="إجمالي_الاستقطاعات" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[مطلوب توريده]" Member="مطلوب_توريده" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[مبالغ تم توريدها]" Member="مبالغ_تم_توريدها" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[إيصال التوريد]" Member="إيصال_التوريد" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[رقم التسوية]" Member="رقم_التسوية" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ملاحظات" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ProGetTempLoans" Method="ProGetTempLoans">
+    <ElementType Name="ProGetTempLoansResult">
+      <Column Name="DocNo" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PayDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="LocationName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="EmployeeName" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="TotalAmount" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Reason" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="Statues" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.[ProGetTempLoanToPay-All]" Method="ProGetTempLoanToPay_All">
+    <Parameter Name="PeriodStart" Parameter="periodStart" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="PeriodEnd" Parameter="periodEnd" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="ProGetTempLoanToPay_AllResult">
+      <Column Name="[رقم المستند]" Member="رقم_المستند" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الدفع]" Member="تاريخ_الدفع" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[جهة العمل]" Member="جهة_العمل" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[مسئول السلفة]" Member="مسئول_السلفة" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="[مبلغ السلفة]" Member="مبلغ_السلفة" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[التسوية خلال]" Member="التسوية_خلال" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[الغرض من الصرف]" Member="الغرض_من_الصرف" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="[حالة التسوية]" Member="حالة_التسوية" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ التسوية]" Member="تاريخ_التسوية" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[رقم الشيك]" Member="رقم_الشيك" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[تاريخ تحرير الشيك]" Member="تاريخ_تحرير_الشيك" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[تاريخ صرفه]" Member="تاريخ_صرفه" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[تاريخ الاستلام]" Member="تاريخ_الاستلام" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[مبلغ التسوية]" Member="مبلغ_التسوية" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[مدة التسوية]" Member="مدة_التسوية" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="الضرائب" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[غرامات التأخير]" Member="غرامات_التأخير" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[مهن تطليقية وهندسية]" Member="مهن_تطليقية_وهندسية" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="إيرادات" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[المبلغ الصافي]" Member="المبلغ_الصافي" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[إجمالي الاستقطاعات]" Member="إجمالي_الاستقطاعات" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[مطلوب توريده]" Member="مطلوب_توريده" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[مبالغ تم توريدها]" Member="مبالغ_تم_توريدها" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="[إيصال التوريد]" Member="إيصال_التوريد" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[رقم التسوية]" Member="رقم_التسوية" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ملاحظات" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ProGetTransFeeByDocNo" Method="ProGetTransFeeByDocNo">
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="ProGetTransFeeByDocNoResult">
+      <Column Name="[رقم المستند]" Member="رقم_المستند" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الدفع]" Member="تاريخ_الدفع" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[الجهة التابع لها]" Member="الجهة_التابع_لها" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[اسم الموظف]" Member="اسم_الموظف" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="[جهة المأمورية]" Member="جهة_المأمورية" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="الفترة" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="[بدل الانتقال]" Member="بدل_الانتقال" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[بدل السفر]" Member="بدل_السفر" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="ملاحظات" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ProGetTransFeeByEmployeeID" Method="ProGetTransFeeByEmployeeID">
+    <Parameter Name="EmployeeID" Parameter="employeeID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="ProGetTransFeeByEmployeeIDResult">
+      <Column Name="[رقم المستند]" Member="رقم_المستند" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الدفع]" Member="تاريخ_الدفع" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[الجهة التابع لها]" Member="الجهة_التابع_لها" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[اسم الموظف]" Member="اسم_الموظف" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="[جهة المأمورية]" Member="جهة_المأمورية" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="الفترة" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="[بدل الانتقال]" Member="بدل_الانتقال" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[بدل السفر]" Member="بدل_السفر" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="ملاحظات" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ProGetTransFeeByLocationID" Method="ProGetTransFeeByLocationID">
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="ProGetTransFeeByLocationIDResult">
+      <Column Name="[رقم المستند]" Member="رقم_المستند" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الدفع]" Member="تاريخ_الدفع" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[الجهة التابع لها]" Member="الجهة_التابع_لها" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[اسم الموظف]" Member="اسم_الموظف" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="[جهة المأمورية]" Member="جهة_المأمورية" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="الفترة" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="[بدل الانتقال]" Member="بدل_الانتقال" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[بدل السفر]" Member="بدل_السفر" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="ملاحظات" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ProGetTransFeeByPayDate" Method="ProGetTransFeeByPayDate">
+    <Parameter Name="PayDate" Parameter="payDate" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="ProGetTransFeeByPayDateResult">
+      <Column Name="[رقم المستند]" Member="رقم_المستند" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الدفع]" Member="تاريخ_الدفع" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[الجهة التابع لها]" Member="الجهة_التابع_لها" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[اسم الموظف]" Member="اسم_الموظف" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="[جهة المأمورية]" Member="جهة_المأمورية" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="الفترة" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="[بدل الانتقال]" Member="بدل_الانتقال" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[بدل السفر]" Member="بدل_السفر" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="ملاحظات" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ProGetUserByUserName" Method="ProGetUserByUserName">
+    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="ProGetUserByUserNameResult">
+      <Column Name="[الاسم الأول]" Member="الاسم_الأول" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[الاسم الأخير]" Member="الاسم_الأخير" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="العنوان" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="التليفون" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[اسم المستخدم]" Member="اسم_المستخدم" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[مجموعة المستخدمين]" Member="مجموعة_المستخدمين" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="ملاحظات" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ProGetUserPassword" Method="ProGetUserPassword">
+    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="NVarChar(60)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProGetUserPermisions" Method="ProGetUserPermisions">
+    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Admin" Parameter="admin" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="Add" Parameter="add" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="Edit" Parameter="edit" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="View" Parameter="view" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProUpdateSettlement" Method="ProUpdateSettlement">
+    <Parameter Name="Current" Parameter="current" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="SetNo" Parameter="setNo" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="LocationId" Parameter="locationId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SetDate" Parameter="setDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Amount" Parameter="amount" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="Details" Parameter="details" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(500)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProSelectContractor" Method="ProSelectContractor">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(150)" Direction="InOut" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(250)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProSelectCure" Method="ProSelectCure">
+    <Parameter Name="CurrentDocNo" Parameter="currentDocNo" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(20)" Direction="InOut" />
+    <Parameter Name="EmployeeID" Parameter="employeeID" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="Person" Parameter="person" Type="System.String" DbType="NVarChar(100)" Direction="InOut" />
+    <Parameter Name="Amount" Parameter="amount" Type="System.Decimal" DbType="Decimal(10,3)" Direction="InOut" />
+    <Parameter Name="PayDate" Parameter="payDate" Type="System.DateTime" DbType="Date" Direction="InOut" />
+    <Parameter Name="Desc" Parameter="desc" Type="System.String" DbType="NVarChar(1000)" Direction="InOut" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(1000)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProSelectDoctor" Method="ProSelectDoctor">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(150)" Direction="InOut" />
+    <Parameter Name="Type" Parameter="type" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(250)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProSelectDoctorBill" Method="ProSelectDoctorBill">
+    <Parameter Name="CurrentDocNo" Parameter="currentDocNo" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(20)" Direction="InOut" />
+    <Parameter Name="PayDate" Parameter="payDate" Type="System.DateTime" DbType="Date" Direction="InOut" />
+    <Parameter Name="Location" Parameter="location" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="Doctor" Parameter="doctor" Type="System.String" DbType="NVarChar(150)" Direction="InOut" />
+    <Parameter Name="Amount" Parameter="amount" Type="System.Decimal" DbType="Decimal(10,3)" Direction="InOut" />
+    <Parameter Name="TaxPercent" Parameter="taxPercent" Type="System.Decimal" DbType="Decimal(3,1)" Direction="InOut" />
+    <Parameter Name="Taxs" Parameter="taxs" Type="System.Decimal" DbType="Decimal(10,2)" Direction="InOut" />
+    <Parameter Name="Discounts" Parameter="discounts" Type="System.Decimal" DbType="Decimal(10,2)" Direction="InOut" />
+    <Parameter Name="TotalDiscount" Parameter="totalDiscount" Type="System.Decimal" DbType="Decimal(10,2)" Direction="InOut" />
+    <Parameter Name="NetAmount" Parameter="netAmount" Type="System.Decimal" DbType="Decimal(10,2)" Direction="InOut" />
+    <Parameter Name="Details" Parameter="details" Type="System.String" DbType="NVarChar(MAX)" Direction="InOut" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(500)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProSelectEmployee" Method="ProSelectEmployee">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(150)" Direction="InOut" />
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="FunctionalDegree" Parameter="functionalDegree" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="Position" Parameter="position" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="Address" Parameter="address" Type="System.String" DbType="NVarChar(250)" Direction="InOut" />
+    <Parameter Name="Tel" Parameter="tel" Type="System.String" DbType="NVarChar(11)" Direction="InOut" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(250)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProSelectLocation" Method="ProSelectLocation">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="SectorID" Parameter="sectorID" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(250)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProSelectMyUserAccount" Method="ProSelectMyUserAccount">
+    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(60)" />
+    <Parameter Name="FirstName" Parameter="firstName" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="LastName" Parameter="lastName" Type="System.String" DbType="NVarChar(100)" Direction="InOut" />
+    <Parameter Name="UserAddress" Parameter="userAddress" Type="System.String" DbType="NVarChar(300)" Direction="InOut" />
+    <Parameter Name="Telephone" Parameter="telephone" Type="System.String" DbType="NVarChar(20)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProSelectPrePay" Method="ProSelectPrePay">
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="VendorID" Parameter="vendorID" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="EmployeeID" Parameter="employeeID" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="PayDate" Parameter="payDate" Type="System.DateTime" DbType="Date" Direction="InOut" />
+    <Parameter Name="Amount" Parameter="amount" Type="System.Double" DbType="Float" Direction="InOut" />
+    <Parameter Name="Percentage" Parameter="percentage" Type="System.Double" DbType="Float" Direction="InOut" />
+    <Parameter Name="Tax" Parameter="tax" Type="System.Double" DbType="Float" Direction="InOut" />
+    <Parameter Name="Fees" Parameter="fees" Type="System.Double" DbType="Float" Direction="InOut" />
+    <Parameter Name="TotalDiscount" Parameter="totalDiscount" Type="System.Double" DbType="Float" Direction="InOut" />
+    <Parameter Name="NetAmount" Parameter="netAmount" Type="System.Double" DbType="Float" Direction="InOut" />
+    <Parameter Name="Just" Parameter="just" Type="System.String" DbType="NVarChar(300)" Direction="InOut" />
+    <Parameter Name="Discription" Parameter="discription" Type="System.String" DbType="NVarChar(300)" Direction="InOut" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(300)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProSelectProject" Method="ProSelectProject">
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ContractorID" Parameter="contractorID" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ExcuteOrder" Parameter="excuteOrder" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="ExcuteOrderDate" Parameter="excuteOrderDate" Type="System.DateTime" DbType="Date" Direction="InOut" />
+    <Parameter Name="PredictionOrder" Parameter="predictionOrder" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="PridictionOrderDate" Parameter="pridictionOrderDate" Type="System.DateTime" DbType="Date" Direction="InOut" />
+    <Parameter Name="Period" Parameter="period" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="StartDate" Parameter="startDate" Type="System.DateTime" DbType="Date" Direction="InOut" />
+    <Parameter Name="EndDate" Parameter="endDate" Type="System.DateTime" DbType="Date" Direction="InOut" />
+    <Parameter Name="ActualPeriod" Parameter="actualPeriod" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(250)" Direction="InOut" />
+    <Parameter Name="value" Type="System.Decimal" DbType="Decimal(10,2)" Direction="InOut" />
+    <Parameter Name="PayDate" Parameter="payDate" Type="System.DateTime" DbType="Date" Direction="InOut" />
+    <Parameter Name="TaxRate" Parameter="taxRate" Type="System.Decimal" DbType="Decimal(3,1)" Direction="InOut" />
+    <Parameter Name="TaxValue" Parameter="taxValue" Type="System.Decimal" DbType="Decimal(10,2)" Direction="InOut" />
+    <Parameter Name="TransFeesRate" Parameter="transFeesRate" Type="System.Decimal" DbType="Decimal(3,1)" Direction="InOut" />
+    <Parameter Name="TransFeesValue" Parameter="transFeesValue" Type="System.Decimal" DbType="Decimal(10,2)" Direction="InOut" />
+    <Parameter Name="InsuranceRate" Parameter="insuranceRate" Type="System.Decimal" DbType="Decimal(3,1)" Direction="InOut" />
+    <Parameter Name="InsuranceValue" Parameter="insuranceValue" Type="System.Decimal" DbType="Decimal(10,2)" Direction="InOut" />
+    <Parameter Name="InsuranceRefund" Parameter="insuranceRefund" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="ReservedRate" Parameter="reservedRate" Type="System.Decimal" DbType="Decimal(3,1)" Direction="InOut" />
+    <Parameter Name="ReservedValue" Parameter="reservedValue" Type="System.Decimal" DbType="Decimal(10,2)" Direction="InOut" />
+    <Parameter Name="ReservedRefund" Parameter="reservedRefund" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="BusinessFees" Parameter="businessFees" Type="System.Decimal" DbType="Decimal(10,2)" Direction="InOut" />
+    <Parameter Name="TotalDiscount" Parameter="totalDiscount" Type="System.Decimal" DbType="Decimal(10,2)" Direction="InOut" />
+    <Parameter Name="NetAmount" Parameter="netAmount" Type="System.Decimal" DbType="Decimal(10,2)" Direction="InOut" />
+    <Parameter Name="JustAmount" Parameter="justAmount" Type="System.String" DbType="NVarChar(300)" Direction="InOut" />
+    <Parameter Name="ReservedDocNo" Parameter="reservedDocNo" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="ReservedPayDate" Parameter="reservedPayDate" Type="System.DateTime" DbType="Date" Direction="InOut" />
+    <Parameter Name="ReservedDiscPercent" Parameter="reservedDiscPercent" Type="System.Decimal" DbType="Decimal(3,1)" Direction="InOut" />
+    <Parameter Name="ReservedDiscount" Parameter="reservedDiscount" Type="System.Decimal" DbType="Decimal(10,2)" Direction="InOut" />
+    <Parameter Name="ReservedPaid" Parameter="reservedPaid" Type="System.Decimal" DbType="Decimal(10,2)" Direction="InOut" />
+    <Parameter Name="InsuranceDocNo" Parameter="insuranceDocNo" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="InsurancePayDate" Parameter="insurancePayDate" Type="System.DateTime" DbType="Date" Direction="InOut" />
+    <Parameter Name="InsuranceDiscPercent" Parameter="insuranceDiscPercent" Type="System.Decimal" DbType="Decimal(3,1)" Direction="InOut" />
+    <Parameter Name="InsuranceDiscount" Parameter="insuranceDiscount" Type="System.Decimal" DbType="Decimal(10,2)" Direction="InOut" />
+    <Parameter Name="InsurancePaid" Parameter="insurancePaid" Type="System.Decimal" DbType="Decimal(10,2)" Direction="InOut" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(1000)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProSelectReserved" Method="ProSelectReserved">
+    <Parameter Name="PredictionOrder" Parameter="predictionOrder" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="PredicationOrderDate" Parameter="predicationOrderDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="ExcuteOrder" Parameter="excuteOrder" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="ExcuteOrderDate" Parameter="excuteOrderDate" Type="System.DateTime" DbType="Date" Direction="InOut" />
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ContractorID" Parameter="contractorID" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(250)" Direction="InOut" />
+    <Parameter Name="value" Type="System.Double" DbType="Float" Direction="InOut" />
+    <Parameter Name="ReservedValue" Parameter="reservedValue" Type="System.Double" DbType="Float" Direction="InOut" />
+    <Parameter Name="PayDate" Parameter="payDate" Type="System.DateTime" DbType="Date" Direction="InOut" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(300)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProSelectSettlement" Method="ProSelectSettlement">
+    <Parameter Name="Current" Parameter="current" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="SetNo" Parameter="setNo" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="LocationId" Parameter="locationId" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="SetDate" Parameter="setDate" Type="System.DateTime" DbType="Date" Direction="InOut" />
+    <Parameter Name="Amount" Parameter="amount" Type="System.Decimal" DbType="Decimal(10,2)" Direction="InOut" />
+    <Parameter Name="Details" Parameter="details" Type="System.String" DbType="NVarChar(MAX)" Direction="InOut" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(500)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProSelectTelephone" Method="ProSelectTelephone">
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="PayDate" Parameter="payDate" Type="System.DateTime" DbType="Date" Direction="InOut" />
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="TelNoID" Parameter="telNoID" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="Portion" Parameter="portion" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="Amount" Parameter="amount" Type="System.Decimal" DbType="Decimal(10,3)" Direction="InOut" />
+    <Parameter Name="SellTax" Parameter="sellTax" Type="System.Decimal" DbType="Decimal(10,3)" Direction="InOut" />
+    <Parameter Name="Stamp" Parameter="stamp" Type="System.Decimal" DbType="Decimal(10,3)" Direction="InOut" />
+    <Parameter Name="TotalDiscount" Parameter="totalDiscount" Type="System.Decimal" DbType="Decimal(10,3)" Direction="InOut" />
+    <Parameter Name="NetAmount" Parameter="netAmount" Type="System.Decimal" DbType="Decimal(10,3)" Direction="InOut" />
+    <Parameter Name="Percentage" Parameter="percentage" Type="System.Double" DbType="Float" Direction="InOut" />
+    <Parameter Name="Tax" Parameter="tax" Type="System.Decimal" DbType="Decimal(10,3)" Direction="InOut" />
+    <Parameter Name="PaidAmount" Parameter="paidAmount" Type="System.Decimal" DbType="Decimal(10,3)" Direction="InOut" />
+    <Parameter Name="Settled" Parameter="settled" Type="System.String" DbType="NVarChar(5)" Direction="InOut" />
+    <Parameter Name="SettlementDate" Parameter="settlementDate" Type="System.DateTime" DbType="Date" Direction="InOut" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(1000)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProSelectTelNo" Method="ProSelectTelNo">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TelNo" Parameter="telNo" Type="System.String" DbType="NVarChar(12)" Direction="InOut" />
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(250)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProSelectTempLoan" Method="ProSelectTempLoan">
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="Paydate" Parameter="paydate" Type="System.DateTime" DbType="Date" Direction="InOut" />
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="EmployeeID" Parameter="employeeID" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="TotalAmount" Parameter="totalAmount" Type="System.Decimal" DbType="Decimal(10,2)" Direction="InOut" />
+    <Parameter Name="Period" Parameter="period" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="Reason" Parameter="reason" Type="System.String" DbType="NVarChar(300)" Direction="InOut" />
+    <Parameter Name="Statues" Parameter="statues" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="Settlemantdate" Parameter="settlemantdate" Type="System.DateTime" DbType="Date" Direction="InOut" />
+    <Parameter Name="ChequeNo" Parameter="chequeNo" Type="System.String" DbType="NVarChar(20)" Direction="InOut" />
+    <Parameter Name="Chequedate" Parameter="chequedate" Type="System.DateTime" DbType="Date" Direction="InOut" />
+    <Parameter Name="Expensedate" Parameter="expensedate" Type="System.DateTime" DbType="Date" Direction="InOut" />
+    <Parameter Name="EndDate" Parameter="endDate" Type="System.DateTime" DbType="Date" Direction="InOut" />
+    <Parameter Name="SettlementAmount" Parameter="settlementAmount" Type="System.Decimal" DbType="Decimal(10,2)" Direction="InOut" />
+    <Parameter Name="SettlementPeriod" Parameter="settlementPeriod" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="Tax" Parameter="tax" Type="System.Decimal" DbType="Decimal(10,2)" Direction="InOut" />
+    <Parameter Name="Penalty" Parameter="penalty" Type="System.Decimal" DbType="Decimal(10,2)" Direction="InOut" />
+    <Parameter Name="Fees" Parameter="fees" Type="System.Decimal" DbType="Decimal(10,2)" Direction="InOut" />
+    <Parameter Name="Revenues" Parameter="revenues" Type="System.Decimal" DbType="Decimal(10,2)" Direction="InOut" />
+    <Parameter Name="NetAmount" Parameter="netAmount" Type="System.Decimal" DbType="Decimal(10,2)" Direction="InOut" />
+    <Parameter Name="TotalDiscount" Parameter="totalDiscount" Type="System.Decimal" DbType="Decimal(10,2)" Direction="InOut" />
+    <Parameter Name="AmountToPay" Parameter="amountToPay" Type="System.Decimal" DbType="Decimal(10,2)" Direction="InOut" />
+    <Parameter Name="PaidAmount" Parameter="paidAmount" Type="System.Decimal" DbType="Decimal(10,2)" Direction="InOut" />
+    <Parameter Name="BillNo" Parameter="billNo" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="SettlementNo" Parameter="settlementNo" Type="System.String" DbType="NVarChar(20)" Direction="InOut" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(300)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProSelectTransFee" Method="ProSelectTransFee">
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="PayDate" Parameter="payDate" Type="System.DateTime" DbType="Date" Direction="InOut" />
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="EmployeeID" Parameter="employeeID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Destination" Parameter="destination" Type="System.String" DbType="NVarChar(150)" Direction="InOut" />
+    <Parameter Name="Period" Parameter="period" Type="System.String" DbType="NVarChar(150)" Direction="InOut" />
+    <Parameter Name="Trans" Parameter="trans" Type="System.Decimal" DbType="Decimal(10,3)" Direction="InOut" />
+    <Parameter Name="Travel" Parameter="travel" Type="System.Decimal" DbType="Decimal(10,3)" Direction="InOut" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(1000)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProSelectUser" Method="ProSelectUser">
+    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(60)" />
+    <Parameter Name="FirstName" Parameter="firstName" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="LastName" Parameter="lastName" Type="System.String" DbType="NVarChar(100)" Direction="InOut" />
+    <Parameter Name="UserAddress" Parameter="userAddress" Type="System.String" DbType="NVarChar(300)" Direction="InOut" />
+    <Parameter Name="Telephone" Parameter="telephone" Type="System.String" DbType="NVarChar(20)" Direction="InOut" />
+    <Parameter Name="NewUserName" Parameter="newUserName" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="GroupID" Parameter="groupID" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="Disabled" Parameter="disabled" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="Locked" Parameter="locked" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(1000)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProSelectUserGroup" Method="ProSelectUserGroup">
+    <Parameter Name="CurrentName" Parameter="currentName" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(100)" Direction="InOut" />
+    <Parameter Name="Admin" Parameter="admin" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="Add" Parameter="add" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="Edit" Parameter="edit" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="View" Parameter="view" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(300)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProSelectVendor" Method="ProSelectVendor">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(300)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProTransAddLocation" Method="ProTransAddLocation">
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="SectorID" Parameter="sectorID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nots" Parameter="nots" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="UserID" Parameter="userID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Operation" Parameter="operation" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Date" Parameter="date" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Time" Parameter="time" Type="System.TimeSpan" DbType="Time" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProUpdateContractor" Method="ProUpdateContractor">
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(150)" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProUpdateCure" Method="ProUpdateCure">
+    <Parameter Name="CurrentDocNo" Parameter="currentDocNo" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="EmployeeID" Parameter="employeeID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Person" Parameter="person" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="Amount" Parameter="amount" Type="System.Decimal" DbType="Decimal(10,3)" />
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="PayDate" Parameter="payDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Desc" Parameter="desc" Type="System.String" DbType="NVarChar(1000)" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(1000)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProUpdateDoctor" Method="ProUpdateDoctor">
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(150)" />
+    <Parameter Name="Type" Parameter="type" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProUpdateDoctorBill" Method="ProUpdateDoctorBill">
+    <Parameter Name="CurrentDocNo" Parameter="currentDocNo" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="PayDate" Parameter="payDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="DoctorID" Parameter="doctorID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Amount" Parameter="amount" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="TaxPercent" Parameter="taxPercent" Type="System.Decimal" DbType="Decimal(3,1)" />
+    <Parameter Name="Taxs" Parameter="taxs" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="Discounts" Parameter="discounts" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="TotalDiscount" Parameter="totalDiscount" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="NetAmount" Parameter="netAmount" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="Details" Parameter="details" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(500)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProUpdateEmployee" Method="ProUpdateEmployee">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(150)" />
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FunctionalDegree" Parameter="functionalDegree" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Position" Parameter="position" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Address" Parameter="address" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="Tel" Parameter="tel" Type="System.String" DbType="NVarChar(11)" />
+    <Parameter Name="Nots" Parameter="nots" Type="System.String" DbType="NVarChar(250)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProUpdateLocation" Method="ProUpdateLocation">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="SectorID" Parameter="sectorID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(250)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProUpdatePrePay" Method="ProUpdatePrePay">
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="VendorID" Parameter="vendorID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="EmployeeID" Parameter="employeeID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="PayDate" Parameter="payDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Amount" Parameter="amount" Type="System.Double" DbType="Float" />
+    <Parameter Name="Percentage" Parameter="percentage" Type="System.Double" DbType="Float" />
+    <Parameter Name="Tax" Parameter="tax" Type="System.Double" DbType="Float" />
+    <Parameter Name="Fees" Parameter="fees" Type="System.Double" DbType="Float" />
+    <Parameter Name="TotalDiscount" Parameter="totalDiscount" Type="System.Double" DbType="Float" />
+    <Parameter Name="NetAmount" Parameter="netAmount" Type="System.Double" DbType="Float" />
+    <Parameter Name="Just" Parameter="just" Type="System.String" DbType="NVarChar(300)" />
+    <Parameter Name="Discription" Parameter="discription" Type="System.String" DbType="NVarChar(300)" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(300)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProUpdateProject" Method="ProUpdateProject">
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ContractorID" Parameter="contractorID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ExcuteOrder" Parameter="excuteOrder" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="ExcuteOrderDate" Parameter="excuteOrderDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="PredictionOrder" Parameter="predictionOrder" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="PridictionOrderDate" Parameter="pridictionOrderDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Period" Parameter="period" Type="System.Int32" DbType="Int" />
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="StartDate" Parameter="startDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="EndDate" Parameter="endDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="ActualPeriod" Parameter="actualPeriod" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="value" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="PayDate" Parameter="payDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="TaxRate" Parameter="taxRate" Type="System.Decimal" DbType="Decimal(3,1)" />
+    <Parameter Name="TaxValue" Parameter="taxValue" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="TransFeesRate" Parameter="transFeesRate" Type="System.Decimal" DbType="Decimal(3,1)" />
+    <Parameter Name="TransFeesValue" Parameter="transFeesValue" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="InsuranceRate" Parameter="insuranceRate" Type="System.Decimal" DbType="Decimal(3,1)" />
+    <Parameter Name="InsuranceValue" Parameter="insuranceValue" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="InsuranceRefund" Parameter="insuranceRefund" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="ReservedRate" Parameter="reservedRate" Type="System.Decimal" DbType="Decimal(3,1)" />
+    <Parameter Name="ReservedValue" Parameter="reservedValue" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="ReservedRefund" Parameter="reservedRefund" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="BusinessFees" Parameter="businessFees" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="TotalDiscount" Parameter="totalDiscount" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="NetAmount" Parameter="netAmount" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="JustAmount" Parameter="justAmount" Type="System.String" DbType="NVarChar(300)" />
+    <Parameter Name="ReservedDocNo" Parameter="reservedDocNo" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="ReservedPayDate" Parameter="reservedPayDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="ReservedDiscPercent" Parameter="reservedDiscPercent" Type="System.Decimal" DbType="Decimal(3,1)" />
+    <Parameter Name="ReservedDiscount" Parameter="reservedDiscount" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="ReservedPaid" Parameter="reservedPaid" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="InsuranceDocNo" Parameter="insuranceDocNo" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="InsurancePayDate" Parameter="insurancePayDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="InsuranceDiscPercent" Parameter="insuranceDiscPercent" Type="System.Decimal" DbType="Decimal(3,1)" />
+    <Parameter Name="InsuranceDiscount" Parameter="insuranceDiscount" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="InsurancePaid" Parameter="insurancePaid" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(1000)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProUpdateReserved" Method="ProUpdateReserved">
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="PredictionOrder" Parameter="predictionOrder" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="PredicationOrderDate" Parameter="predicationOrderDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="ExcuteOrder" Parameter="excuteOrder" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="ExcuteOrderDate" Parameter="excuteOrderDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ContractorID" Parameter="contractorID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="value" Type="System.Double" DbType="Float" />
+    <Parameter Name="ReservedValue" Parameter="reservedValue" Type="System.Double" DbType="Float" />
+    <Parameter Name="PayDate" Parameter="payDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(300)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProUpdateTelephone" Method="ProUpdateTelephone">
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="PayDate" Parameter="payDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TelNoID" Parameter="telNoID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Portion" Parameter="portion" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Amount" Parameter="amount" Type="System.Decimal" DbType="Decimal(10,3)" />
+    <Parameter Name="SellTax" Parameter="sellTax" Type="System.Decimal" DbType="Decimal(10,3)" />
+    <Parameter Name="Stamp" Parameter="stamp" Type="System.Decimal" DbType="Decimal(10,3)" />
+    <Parameter Name="TotalDiscount" Parameter="totalDiscount" Type="System.Decimal" DbType="Decimal(10,3)" />
+    <Parameter Name="NetAmount" Parameter="netAmount" Type="System.Decimal" DbType="Decimal(10,3)" />
+    <Parameter Name="Percentage" Parameter="percentage" Type="System.Double" DbType="Float" />
+    <Parameter Name="Tax" Parameter="tax" Type="System.Decimal" DbType="Decimal(10,3)" />
+    <Parameter Name="PaidAmount" Parameter="paidAmount" Type="System.Decimal" DbType="Decimal(10,3)" />
+    <Parameter Name="Settled" Parameter="settled" Type="System.String" DbType="NVarChar(5)" />
+    <Parameter Name="SettlementDate" Parameter="settlementDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(1000)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProUpdateTelNo" Method="ProUpdateTelNo">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TelNo" Parameter="telNo" Type="System.String" DbType="NVarChar(12)" />
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(250)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProUpdateTempLoan" Method="ProUpdateTempLoan">
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="Paydate" Parameter="paydate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="EmployeeID" Parameter="employeeID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TotalAmount" Parameter="totalAmount" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="Period" Parameter="period" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Reason" Parameter="reason" Type="System.String" DbType="NVarChar(300)" />
+    <Parameter Name="Statues" Parameter="statues" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Settlemantdate" Parameter="settlemantdate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="ChequeNo" Parameter="chequeNo" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="Chequedate" Parameter="chequedate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Expensedate" Parameter="expensedate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="EndDate" Parameter="endDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="SettlementAmount" Parameter="settlementAmount" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="SettlementPeriod" Parameter="settlementPeriod" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Tax" Parameter="tax" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="Penalty" Parameter="penalty" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="Fees" Parameter="fees" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="Revenues" Parameter="revenues" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="NetAmount" Parameter="netAmount" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="TotalDiscount" Parameter="totalDiscount" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="AmountToPay" Parameter="amountToPay" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="PaidAmount" Parameter="paidAmount" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="BillNo" Parameter="billNo" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="SettlementNo" Parameter="settlementNo" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(300)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProUpdateTransFee" Method="ProUpdateTransFee">
+    <Parameter Name="DocNo" Parameter="docNo" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="PayDate" Parameter="payDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="LocationID" Parameter="locationID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="EmployeeID" Parameter="employeeID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Destination" Parameter="destination" Type="System.String" DbType="NVarChar(150)" />
+    <Parameter Name="Period" Parameter="period" Type="System.String" DbType="NVarChar(150)" />
+    <Parameter Name="Trans" Parameter="trans" Type="System.Decimal" DbType="Decimal(10,3)" />
+    <Parameter Name="Travel" Parameter="travel" Type="System.Decimal" DbType="Decimal(10,3)" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(1000)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProUpdateUser" Method="ProUpdateUser">
+    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="FirstName" Parameter="firstName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="LastName" Parameter="lastName" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="UserAddress" Parameter="userAddress" Type="System.String" DbType="NVarChar(300)" />
+    <Parameter Name="Telephone" Parameter="telephone" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="NewUserName" Parameter="newUserName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="NVarChar(60)" />
+    <Parameter Name="GroupID" Parameter="groupID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Disabled" Parameter="disabled" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Locked" Parameter="locked" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(1000)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProUpdateUserGroup" Method="ProUpdateUserGroup">
+    <Parameter Name="CurrentName" Parameter="currentName" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="Admin" Parameter="admin" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Add" Parameter="add" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Edit" Parameter="edit" Type="System.Int32" DbType="Int" />
+    <Parameter Name="View" Parameter="view" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(300)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProUpdateUserMyAccount" Method="ProUpdateUserMyAccount">
+    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="FirstName" Parameter="firstName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="LastName" Parameter="lastName" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="UserAddress" Parameter="userAddress" Type="System.String" DbType="NVarChar(300)" />
+    <Parameter Name="Telephone" Parameter="telephone" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="NewUserName" Parameter="newUserName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="NVarChar(60)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProUpdateUserMyAccountWithoutPassword" Method="ProUpdateUserMyAccountWithoutPassword">
+    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="FirstName" Parameter="firstName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="LastName" Parameter="lastName" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="UserAddress" Parameter="userAddress" Type="System.String" DbType="NVarChar(300)" />
+    <Parameter Name="Telephone" Parameter="telephone" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="NewUserName" Parameter="newUserName" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProUpdateUserWithoutUpdatePassword" Method="ProUpdateUserWithoutUpdatePassword">
+    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="FirstName" Parameter="firstName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="LastName" Parameter="lastName" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="UserAddress" Parameter="userAddress" Type="System.String" DbType="NVarChar(300)" />
+    <Parameter Name="Telephone" Parameter="telephone" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="NewUserName" Parameter="newUserName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="GroupID" Parameter="groupID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Disabled" Parameter="disabled" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Locked" Parameter="locked" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(1000)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProUpdateVendor" Method="ProUpdateVendor">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="NVarChar(300)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProViewContractors" Method="ProViewContractors">
+    <ElementType Name="ProViewContractorsResult">
+      <Column Name="[اسم المقاول]" Member="اسم_المقاول" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="ملاحظات" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ProViewLocations" Method="ProViewLocations">
+    <ElementType Name="ProViewLocationsResult">
+      <Column Name="[اسم جهة العمل]" Member="اسم_جهة_العمل" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ملاحظات" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>

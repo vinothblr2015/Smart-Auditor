@@ -1,0 +1,649 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0DA53896-477D-46C2-B245-7FFA361C4840}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Auditor</RootNamespace>
+    <AssemblyName>المراجع الذكي</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SignManifests>false</SignManifests>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetZone>LocalIntranet</TargetZone>
+    <GenerateManifests>true</GenerateManifests>
+    <NoWin32Manifest>true</NoWin32Manifest>
+    <ManifestCertificateThumbprint>87344F2210BDA6FA11311049E0ACA85FF4B868D7</ManifestCertificateThumbprint>
+    <ManifestKeyFile>Auditor_1_TemporaryKey.pfx</ManifestKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <PublishUrl>C:\Documents and Settings\Ali Mansour\Desktop\Auditor\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>6</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>
+    </DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Auditor.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportAppServer.ClientDoc, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.DataDefModel, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AuditorDataSet.cs">
+      <DependentUpon>AuditorDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="AuditorDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditorDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DBAudit.cs">
+      <DependentUpon>DBAudit.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="DBAudit.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBAudit.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RptProjectsAll.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptProjectsAll.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Views\Management\FrmSystemSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Management\FrmSystemSettings.Designer.cs">
+      <DependentUpon>FrmSystemSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Management\FrmEditMyAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Management\FrmEditMyAccount.Designer.cs">
+      <DependentUpon>FrmEditMyAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cure\FrmModifyDoctorBill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Cure\FrmModifyDoctorBill.Designer.cs">
+      <DependentUpon>FrmModifyDoctorBill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DurableLoan\FrmModifySettlement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\DurableLoan\FrmModifySettlement.Designer.cs">
+      <DependentUpon>FrmModifySettlement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Management\FrmModifyUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Management\FrmModifyUser.Designer.cs">
+      <DependentUpon>FrmModifyUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Management\FrmModifyUserGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Management\FrmModifyUserGroup.Designer.cs">
+      <DependentUpon>FrmModifyUserGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cure\FrmNewDoctorBill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Cure\FrmNewDoctorBill.Designer.cs">
+      <DependentUpon>FrmNewDoctorBill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DurableLoan\FrmNewSettlement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\DurableLoan\FrmNewSettlement.Designer.cs">
+      <DependentUpon>FrmNewSettlement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Management\FrmNewUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Management\FrmNewUser.Designer.cs">
+      <DependentUpon>FrmNewUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RptTempLoans.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptTempLoans.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Views\Projects\FrmRptProjects.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Projects\FrmRptProjects.Designer.cs">
+      <DependentUpon>FrmRptProjects.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TemporaryLoan\FrmModifyTemporaryLoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\TemporaryLoan\FrmModifyTemporaryLoan.Designer.cs">
+      <DependentUpon>FrmModifyTemporaryLoan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DurableLoan\FrmNewDurableLoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\DurableLoan\FrmNewDurableLoan.Designer.cs">
+      <DependentUpon>FrmNewDurableLoan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TemporaryLoan\FrmNewTemporaryLoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\TemporaryLoan\FrmNewTemporaryLoan.Designer.cs">
+      <DependentUpon>FrmNewTemporaryLoan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Management\FrmNewUserGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Management\FrmNewUserGroup.Designer.cs">
+      <DependentUpon>FrmNewUserGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cure\FrmViewCures.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Cure\FrmViewCures.Designer.cs">
+      <DependentUpon>FrmViewCures.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cure\FrmViewDoctorBills.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Cure\FrmViewDoctorBills.Designer.cs">
+      <DependentUpon>FrmViewDoctorBills.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Management\FrmViewLocations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Management\FrmViewLocations.Designer.cs">
+      <DependentUpon>FrmViewLocations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FrmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cure\FrmModifyCure.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Cure\FrmModifyCure.Designer.cs">
+      <DependentUpon>FrmModifyCure.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Projects\FrmModifyProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Projects\FrmModifyProject.Designer.cs">
+      <DependentUpon>FrmModifyProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TemporaryLoan\FrmRptTempLoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\TemporaryLoan\FrmRptTempLoan.Designer.cs">
+      <DependentUpon>FrmRptTempLoan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TransFee\FrmModifyTransFee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\TransFee\FrmModifyTransFee.Designer.cs">
+      <DependentUpon>FrmModifyTransFee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Contractors\FrmNewContractor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Contractors\FrmNewContractor.Designer.cs">
+      <DependentUpon>FrmNewContractor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cure\FrmNewCure.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Cure\FrmNewCure.Designer.cs">
+      <DependentUpon>FrmNewCure.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cure\FrmNewDoctor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Cure\FrmNewDoctor.Designer.cs">
+      <DependentUpon>FrmNewDoctor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Employees\FrmNewEmployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Employees\FrmNewEmployee.Designer.cs">
+      <DependentUpon>FrmNewEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Locations\FrmNewLocation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Locations\FrmNewLocation.Designer.cs">
+      <DependentUpon>FrmNewLocation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Telepohne\FrmNewTel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Telepohne\FrmNewTel.Designer.cs">
+      <DependentUpon>FrmNewTel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Telepohne\FrmNewTelNo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Telepohne\FrmNewTelNo.Designer.cs">
+      <DependentUpon>FrmNewTelNo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PrePay\FrmNewePrePay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\PrePay\FrmNewePrePay.Designer.cs">
+      <DependentUpon>FrmNewePrePay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Contractors\FrmModifyContractor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Contractors\FrmModifyContractor.Designer.cs">
+      <DependentUpon>FrmModifyContractor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Employees\FrmModifyEmployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Employees\FrmModifyEmployee.Designer.cs">
+      <DependentUpon>FrmModifyEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Locations\FrmModifyLocation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Locations\FrmModifyLocation.Designer.cs">
+      <DependentUpon>FrmModifyLocation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Telepohne\FrmModifyTel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Telepohne\FrmModifyTel.Designer.cs">
+      <DependentUpon>FrmModifyTel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Telepohne\FrmModifyTelNo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Telepohne\FrmModifyTelNo.Designer.cs">
+      <DependentUpon>FrmModifyTelNo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Projects\FrmNewProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Projects\FrmNewProject.Designer.cs">
+      <DependentUpon>FrmNewProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TransFee\FrmNewTransFee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\TransFee\FrmNewTransFee.Designer.cs">
+      <DependentUpon>FrmNewTransFee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Contractors\FrmViewContractors.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Contractors\FrmViewContractors.Designer.cs">
+      <DependentUpon>FrmViewContractors.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Projects\FrmViewProjects.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Projects\FrmViewProjects.Designer.cs">
+      <DependentUpon>FrmViewProjects.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Telepohne\FrmViewTel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Telepohne\FrmViewTel.Designer.cs">
+      <DependentUpon>FrmViewTel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TransFee\FrmViewTransFees.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\TransFee\FrmViewTransFees.Designer.cs">
+      <DependentUpon>FrmViewTransFees.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MathOperations.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Models\Security.cs" />
+    <None Include="AuditorDataSet.xsc">
+      <DependentUpon>AuditorDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="AuditorDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AuditorDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="AuditorDataSet.xss">
+      <DependentUpon>AuditorDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DBAudit.dbml.layout">
+      <DependentUpon>DBAudit.dbml</DependentUpon>
+    </None>
+    <EmbeddedResource Include="Reports\RptProjectsAll.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptProjectsAll.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Management\FrmEditMyAccount.resx">
+      <DependentUpon>FrmEditMyAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Cure\FrmModifyDoctorBill.resx">
+      <DependentUpon>FrmModifyDoctorBill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\DurableLoan\FrmModifySettlement.resx">
+      <DependentUpon>FrmModifySettlement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Management\FrmModifyUser.resx">
+      <DependentUpon>FrmModifyUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Management\FrmModifyUserGroup.resx">
+      <DependentUpon>FrmModifyUserGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Cure\FrmNewDoctor.resx">
+      <DependentUpon>FrmNewDoctor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Cure\FrmNewDoctorBill.resx">
+      <DependentUpon>FrmNewDoctorBill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\DurableLoan\FrmNewSettlement.resx">
+      <DependentUpon>FrmNewSettlement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Management\FrmNewUser.resx">
+      <DependentUpon>FrmNewUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Management\FrmSystemSettings.resx">
+      <DependentUpon>FrmSystemSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RptTempLoans.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptTempLoans.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Projects\FrmRptProjects.resx">
+      <DependentUpon>FrmRptProjects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\TemporaryLoan\FrmModifyTemporaryLoan.resx">
+      <DependentUpon>FrmModifyTemporaryLoan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\TemporaryLoan\FrmNewTemporaryLoan.resx">
+      <DependentUpon>FrmNewTemporaryLoan.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Management\FrmNewUserGroup.resx">
+      <DependentUpon>FrmNewUserGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Cure\FrmViewCures.resx">
+      <DependentUpon>FrmViewCures.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Cure\FrmViewDoctorBills.resx">
+      <DependentUpon>FrmViewDoctorBills.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Management\FrmViewLocations.resx">
+      <DependentUpon>FrmViewLocations.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Cure\FrmModifyCure.resx">
+      <DependentUpon>FrmModifyCure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Projects\FrmModifyProject.resx">
+      <DependentUpon>FrmModifyProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Telepohne\FrmModifyTel.resx">
+      <DependentUpon>FrmModifyTel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\TemporaryLoan\FrmRptTempLoan.resx">
+      <DependentUpon>FrmRptTempLoan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\TransFee\FrmModifyTransFee.resx">
+      <DependentUpon>FrmModifyTransFee.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Contractors\FrmNewContractor.resx">
+      <DependentUpon>FrmNewContractor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Cure\FrmNewCure.resx">
+      <DependentUpon>FrmNewCure.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Employees\FrmNewEmployee.resx">
+      <DependentUpon>FrmNewEmployee.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Locations\FrmNewLocation.resx">
+      <DependentUpon>FrmNewLocation.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Telepohne\FrmNewTel.resx">
+      <DependentUpon>FrmNewTel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Telepohne\FrmNewTelNo.resx">
+      <DependentUpon>FrmNewTelNo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\PrePay\FrmNewePrePay.resx">
+      <DependentUpon>FrmNewePrePay.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Contractors\FrmModifyContractor.resx">
+      <DependentUpon>FrmModifyContractor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Employees\FrmModifyEmployee.resx">
+      <DependentUpon>FrmModifyEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Locations\FrmModifyLocation.resx">
+      <DependentUpon>FrmModifyLocation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Telepohne\FrmModifyTelNo.resx">
+      <DependentUpon>FrmModifyTelNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Projects\FrmNewProject.ar-EG.resx">
+      <DependentUpon>FrmNewProject.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Projects\FrmNewProject.resx">
+      <DependentUpon>FrmNewProject.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\TransFee\FrmNewTransFee.resx">
+      <DependentUpon>FrmNewTransFee.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Contractors\FrmViewContractors.resx">
+      <DependentUpon>FrmViewContractors.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Projects\FrmViewProjects.resx">
+      <DependentUpon>FrmViewProjects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Telepohne\FrmViewTel.resx">
+      <DependentUpon>FrmViewTel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\TransFee\FrmViewTransFees.resx">
+      <DependentUpon>FrmViewTransFees.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="DBAudit.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>DBAudit.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+    <Service Include="{967B4E0D-AD0C-4609-AB67-0FA40C0206D8}" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.ReportViewer.12.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft Report Viewer 2014 Runtime</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Resources\Icon.ico" />
+    <Content Include="Resources\Login.png" />
+    <Content Include="Resources\MainBackground.jpg" />
+    <Content Include="Resources\Search.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
