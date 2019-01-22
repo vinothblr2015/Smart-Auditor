@@ -1,6 +1,8 @@
 # Auditor
 DotNet application for digitally storing financial statements data using C# as programming language , MS-SQL server as database, and crystal reports for generating and viewing reports.
 
+All files and lines of codes in this project are published for training purpose only. and it is not authorized for commercial use.
+
 To use this solution you need:
 1. Microsoft Visual Studio 2017
 2. .NETFramework Version=v4.6.1 or above
